@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d0d0f">
+<title>Cérebro Rico — O Ciclo do Comando</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icone.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================
+   CÉREBRO RICO — estilos
+   ========================================================== */
+:root{
+  --bg:#0d0d0f;
+  --bg-2:#151518;
+  --bg-3:#1c1c21;
+  --linha:#2a2a31;
+  --txt:#ece9e4;
+  --txt-2:#9b968e;
+  --txt-3:#6b675f;
+  --acento:#d99a2b;
+  --acento-escuro:#8a6218;
+  --ok:#5f9c6a;
+  --alerta:#c4622d;
+  --raio:14px;
+  --max:620px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  background:var(--bg);
+  color:var(--txt);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+.view{display:none;animation:sobe .35s ease}
+.view.on{display:block}
+@keyframes sobe{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ---------- tipografia ---------- */
+h1{font-size:30px;line-height:1.2;font-weight:700;letter-spacing:-.02em}
+h2{font-size:23px;line-height:1.25;font-weight:600;letter-spacing:-.015em}
+h3{font-size:15px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--txt-3)}
+p{margin-bottom:17px}
+.linha-destaque{
+  font-size:19px;color:var(--acento);font-weight:500;
+  margin:10px 0 26px;line-height:1.4;
+}
+.leitura p{color:#d8d4cd}
+.leitura p:last-child{margin-bottom:0}
+
+/* ---------- topo ---------- */
+.topo{
+  position:sticky;top:0;z-index:20;background:rgba(13,13,15,.93);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--linha);
+}
+.topo-in{
+  max-width:var(--max);margin:0 auto;padding:14px 22px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.marca{font-size:13px;font-weight:700;letter-spacing:.13em;text-transform:uppercase}
+.marca span{color:var(--acento)}
+.btn-txt{
+  background:none;border:none;color:var(--txt-3);font:inherit;font-size:13px;
+  cursor:pointer;padding:6px 2px;
+}
+.btn-txt:hover{color:var(--txt-2)}
+
+/* ---------- botões ---------- */
+.btn{
+  display:block;width:100%;padding:17px 20px;border:none;border-radius:var(--raio);
+  font:inherit;font-size:16px;font-weight:600;cursor:pointer;text-align:center;
+  transition:transform .12s ease,opacity .12s ease;
+}
+.btn:active{transform:scale(.985)}
+.btn:disabled{opacity:.4;cursor:default}
+.btn-1{background:var(--acento);color:#1a1206}
+.btn-2{background:var(--bg-3);color:var(--txt);border:1px solid var(--linha)}
+.btn-3{background:none;color:var(--txt-3);border:1px solid transparent;font-weight:500}
+.btn+.btn{margin-top:11px}
+
+/* ---------- campos ---------- */
+input{
+  width:100%;padding:16px 18px;border-radius:var(--raio);
+  background:var(--bg-2);border:1px solid var(--linha);color:var(--txt);
+  font:inherit;font-size:16px;
+}
+input:focus{outline:none;border-color:var(--acento-escuro)}
+input::placeholder{color:var(--txt-3)}
+label{display:block;font-size:13px;color:var(--txt-2);margin-bottom:9px}
+.campo{margin-bottom:18px}
+
+/* ---------- login ---------- */
+#v-login{padding-top:12vh;padding-bottom:40px}
+.selo{
+  display:inline-block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--acento);border:1px solid var(--acento-escuro);
+  padding:5px 11px;border-radius:100px;margin-bottom:20px;
+}
+.aviso{
+  font-size:14px;color:var(--txt-2);margin-top:20px;line-height:1.55;
+}
+.erro{
+  background:rgba(196,98,45,.11);border:1px solid rgba(196,98,45,.35);
+  color:#e8a882;padding:13px 16px;border-radius:11px;font-size:14.5px;margin-bottom:18px;
+  line-height:1.55;
+}
+
+/* ---------- mapa das fases ---------- */
+.cabecalho{padding:34px 0 26px}
+.progresso-linha{
+  display:flex;align-items:baseline;gap:10px;margin-top:6px;
+}
+.progresso-num{font-size:44px;font-weight:700;letter-spacing:-.03em;line-height:1}
+.progresso-de{color:var(--txt-3);font-size:15px}
+
+.grade{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin:22px 0 8px}
+.cel{
+  aspect-ratio:1;border-radius:9px;background:var(--bg-2);border:1px solid var(--linha);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:600;color:var(--txt-3);
+}
+.cel.feito{background:var(--acento);border-color:var(--acento);color:#1a1206}
+.cel.falhou{background:var(--bg-2);border-color:rgba(196,98,45,.5);color:var(--alerta)}
+.cel.atual{border-color:var(--acento);color:var(--acento);box-shadow:0 0 0 3px rgba(217,154,43,.13)}
+.legenda{display:flex;gap:16px;font-size:12.5px;color:var(--txt-3);margin-bottom:30px}
+.legenda i{width:9px;height:9px;border-radius:3px;display:inline-block;margin-right:5px;vertical-align:middle}
+
+.fase{
+  border:1px solid var(--linha);border-radius:var(--raio);
+  padding:20px;margin-bottom:13px;background:var(--bg-2);
+}
+.fase.ativa{border-color:var(--acento-escuro);background:rgba(217,154,43,.05)}
+.fase.completa{opacity:.55}
+.fase-topo{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
+.fase-nome{font-size:19px;font-weight:600}
+.fase-dias{font-size:12px;color:var(--txt-3);letter-spacing:.05em}
+.fase-desc{font-size:14.5px;color:var(--txt-2);line-height:1.55}
+.fase-barra{height:3px;background:var(--bg-3);border-radius:3px;margin-top:14px;overflow:hidden}
+.fase-barra i{display:block;height:100%;background:var(--acento);border-radius:3px;transition:width .5s ease}
+
+.rodape-mapa{padding:26px 0 44px}
+
+/* ---------- tela do dia ---------- */
+.dia-topo{padding:30px 0 4px}
+.dia-etiqueta{
+  font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--txt-3);
+  margin-bottom:12px;
+}
+.dia-etiqueta b{color:var(--acento);font-weight:600}
+.leitura{padding-bottom:8px}
+
+.cartao-acao{
+  background:var(--bg-2);border:1px solid var(--linha);border-radius:var(--raio);
+  padding:22px;margin:30px 0 26px;
+}
+.acao-topo{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:4px}
+.acao-titulo{font-size:19px;font-weight:600}
+.acao-tempo{font-size:12px;color:var(--txt-3);white-space:nowrap}
+.passos{list-style:none;counter-reset:p;margin-top:18px}
+.passos li{
+  counter-increment:p;position:relative;padding-left:34px;margin-bottom:15px;
+  font-size:15.5px;line-height:1.55;color:#d8d4cd;
+}
+.passos li:last-child{margin-bottom:0}
+.passos li::before{
+  content:counter(p);position:absolute;left:0;top:1px;
+  width:23px;height:23px;border-radius:50%;background:var(--bg-3);
+  color:var(--acento);font-size:12px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+}
+
+.checkin{border-top:1px solid var(--linha);padding:26px 0 44px}
+.checkin-pergunta{font-size:18px;font-weight:500;margin-bottom:20px;line-height:1.45}
+
+/* ---------- espera / recaída / final ---------- */
+.centro{padding:14vh 0 60px;text-align:center}
+.centro .icone{font-size:40px;margin-bottom:20px;color:var(--acento)}
+.centro p{color:var(--txt-2);font-size:16px}
+.caixa-recaida{
+  border:1px solid rgba(196,98,45,.3);background:rgba(196,98,45,.06);
+  border-radius:var(--raio);padding:22px;margin:26px 0;
+}
+.caixa-recaida p{color:#d8d4cd;font-size:15.5px}
+.caixa-recaida p:last-child{margin-bottom:0}
+.regra{
+  font-size:17px;font-weight:600;color:var(--acento);
+  border-left:3px solid var(--acento);padding-left:16px;margin:26px 0;line-height:1.45;
+}
+.mini{font-size:13px;color:var(--txt-3);margin-top:26px;line-height:1.6}
+.carregando{text-align:center;padding:22vh 0;color:var(--txt-3);font-size:15px}
+
+/* ---------- anel de progresso ---------- */
+.painel-topo{display:flex;align-items:center;gap:22px;padding:30px 0 24px}
+.anel{position:relative;width:118px;height:118px;flex-shrink:0}
+.anel svg{transform:rotate(-90deg);display:block}
+.anel .trilho{fill:none;stroke:var(--bg-3);stroke-width:9}
+.anel .barra{
+  fill:none;stroke:var(--acento);stroke-width:9;stroke-linecap:round;
+  transition:stroke-dashoffset 1.1s cubic-bezier(.22,1,.36,1);
+}
+.anel .centro{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;line-height:1;
+}
+.anel .n{font-size:34px;font-weight:700;letter-spacing:-.03em}
+.anel .de{font-size:11px;color:var(--txt-3);margin-top:3px;letter-spacing:.06em}
+.painel-txt h3{margin-bottom:7px}
+.painel-txt .frase{font-size:15px;color:var(--txt-2);line-height:1.5}
+
+/* ---------- célula que acabou de ser marcada ---------- */
+@keyframes pulsa{
+  0%{transform:scale(1)}
+  40%{transform:scale(1.22)}
+  100%{transform:scale(1)}
+}
+.cel.nova{animation:pulsa .5s cubic-bezier(.22,1,.36,1)}
+
+/* ---------- cartão de lembrete ---------- */
+.lembrete{
+  border:1px solid var(--linha);background:var(--bg-2);border-radius:var(--raio);
+  padding:19px;margin-top:22px;
+}
+.lembrete h4{font-size:16px;font-weight:600;margin-bottom:5px}
+.lembrete p{font-size:14px;color:var(--txt-2);margin-bottom:15px;line-height:1.55}
+.lembrete-linha{display:flex;gap:10px;align-items:center}
+.lembrete-linha input{flex:0 0 118px;text-align:center;padding:13px 10px;font-size:16px}
+.lembrete-linha button{
+  flex:1;padding:13px 14px;border-radius:var(--raio);border:none;
+  background:var(--acento);color:#1a1206;font:inherit;font-size:14.5px;font-weight:600;cursor:pointer;
+}
+.lembrete .ok{color:var(--ok);font-size:13.5px;margin-top:12px;line-height:1.55;display:none}
+.lembrete .ok.on{display:block}
+
+/* ---------- tela de virada de fase ---------- */
+.fase-selo{
+  display:inline-block;font-size:11px;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--acento);border:1px solid var(--acento-escuro);
+  padding:6px 13px;border-radius:100px;margin-bottom:22px;
+}
+.fase-num{font-size:72px;font-weight:700;color:var(--acento);line-height:1;letter-spacing:-.04em}
+.fase-marcos{display:flex;gap:9px;justify-content:center;margin:30px 0 34px}
+.fase-marco{
+  width:52px;height:5px;border-radius:4px;background:var(--bg-3);
+  transition:background .6s ease;
+}
+.fase-marco.feita{background:var(--acento)}
+.fase-marco.agora{background:var(--acento-escuro)}
+@keyframes surge{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+#v-fase .anima{animation:surge .6s cubic-bezier(.22,1,.36,1) both}
+#v-fase .a2{animation-delay:.14s}
+#v-fase .a3{animation-delay:.28s}
+#v-fase .a4{animation-delay:.42s}
+</style>
+</head>
+<body>
+
+<header class="topo" id="topo" style="display:none">
+  <div class="topo-in">
+    <div class="marca">Cérebro <span>Rico</span></div>
+    <div style="display:flex;gap:14px;align-items:center">
+      <button class="btn-txt" id="btn-som" aria-label="Ligar ou desligar o som">Som: on</button>
+      <button class="btn-txt" id="btn-sair">Sair</button>
+    </div>
+  </div>
+</header>
+
+<div id="boot" class="carregando">Carregando…</div>
+
+<main class="wrap">
+
+  <!-- ============ LOGIN ============ -->
+  <section class="view" id="v-login">
+    <div class="selo">O Ciclo do Comando</div>
+    <h1>Entre com o e-mail<br>da sua compra.</h1>
+    <p class="linha-destaque">21 dias. Um por dia.</p>
+
+    <div id="login-erro"></div>
+
+    <div class="campo">
+      <label for="in-email">E-mail</label>
+      <input type="email" id="in-email" placeholder="seu@email.com" autocomplete="email" inputmode="email">
+    </div>
+    <button class="btn btn-1" id="btn-entrar">Entrar</button>
+    <p class="aviso">Sem senha e sem código. Use o mesmo e-mail que você usou no checkout.</p>
+  </section>
+
+  <!-- ============ MAPA DAS FASES ============ -->
+  <section class="view" id="v-mapa">
+    <div class="painel-topo">
+      <div class="anel">
+        <svg viewBox="0 0 118 118" width="118" height="118" aria-hidden="true">
+          <circle class="trilho" cx="59" cy="59" r="52"></circle>
+          <circle class="barra" id="m-barra" cx="59" cy="59" r="52"></circle>
+        </svg>
+        <div class="centro">
+          <div class="n" id="m-feitos">0</div>
+          <div class="de">DE 21</div>
+        </div>
+      </div>
+      <div class="painel-txt">
+        <h3>Seu progresso</h3>
+        <div class="frase" id="m-frase"></div>
+      </div>
+    </div>
+
+    <div class="grade" id="m-grade"></div>
+    <div class="legenda">
+      <span><i style="background:var(--acento)"></i>Feito</span>
+      <span><i style="background:var(--bg-2);border:1px solid var(--alerta)"></i>Falhou</span>
+      <span><i style="background:var(--bg-2);border:1px solid var(--linha)"></i>Pela frente</span>
+    </div>
+
+    <div id="m-fases"></div>
+
+    <div class="lembrete">
+      <h4>Lembrete diário</h4>
+      <p>Escolha o horário e adicione ao calendário do celular. Ele avisa todo dia até o dia 21.</p>
+      <div class="lembrete-linha">
+        <input type="time" id="lem-hora" value="07:00" aria-label="Horário do lembrete">
+        <button id="btn-lembrete">Ativar lembrete</button>
+      </div>
+      <div class="ok" id="lem-ok">
+        Arquivo baixado. Abra ele e confirme para o lembrete entrar no seu calendário.
+      </div>
+    </div>
+
+    <div class="rodape-mapa">
+      <button class="btn btn-1" id="btn-abrir-dia">Abrir o dia</button>
+    </div>
+  </section>
+
+  <!-- ============ VIRADA DE FASE ============ -->
+  <section class="view" id="v-fase">
+    <div style="padding:11vh 0 60px;text-align:center">
+      <div class="fase-selo anima" id="fa-selo"></div>
+      <div class="fase-num anima a2" id="fa-num"></div>
+      <h2 class="anima a2" style="margin-top:16px" id="fa-titulo"></h2>
+      <p class="linha-destaque anima a3" id="fa-promessa" style="margin-top:12px"></p>
+
+      <div class="fase-marcos anima a3">
+        <div class="fase-marco" id="fa-m1"></div>
+        <div class="fase-marco" id="fa-m2"></div>
+        <div class="fase-marco" id="fa-m3"></div>
+      </div>
+
+      <p class="anima a4" id="fa-texto" style="color:var(--txt-2);font-size:15.5px;text-align:left"></p>
+
+      <div class="anima a4" style="margin-top:30px">
+        <button class="btn btn-1" id="btn-fase-ok">Continuar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TELA DO DIA ============ -->
+  <section class="view" id="v-dia">
+    <div class="dia-topo">
+      <div class="dia-etiqueta" id="d-etiqueta"></div>
+      <h2 id="d-titulo"></h2>
+      <p class="linha-destaque" id="d-linha"></p>
+    </div>
+
+    <div class="leitura" id="d-leitura"></div>
+
+    <div class="cartao-acao">
+      <div class="acao-topo">
+        <div class="acao-titulo" id="d-acao-titulo"></div>
+        <div class="acao-tempo" id="d-acao-tempo"></div>
+      </div>
+      <ol class="passos" id="d-passos"></ol>
+    </div>
+
+    <div class="checkin">
+      <div class="checkin-pergunta" id="d-checkin"></div>
+      <button class="btn btn-1" id="btn-fiz">Fiz</button>
+      <button class="btn btn-2" id="btn-nao-fiz">Não fiz hoje</button>
+      <button class="btn btn-3" id="btn-voltar-mapa">Voltar</button>
+    </div>
+  </section>
+
+  <!-- ============ ESPERA (dia já concluído) ============ -->
+  <section class="view" id="v-espera">
+    <div class="centro">
+      <div class="icone">✓</div>
+      <h2 id="e-titulo">Dia concluído.</h2>
+      <p id="e-texto" style="margin-top:14px">O próximo dia abre amanhã. Não adianta adiantar — o intervalo faz parte do método.</p>
+      <div style="margin-top:34px">
+        <button class="btn btn-2" id="btn-espera-mapa">Ver meu progresso</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RECAÍDA ============ -->
+  <section class="view" id="v-recaida">
+    <div class="dia-topo">
+      <div class="dia-etiqueta">Registro</div>
+      <h2 id="r-titulo"></h2>
+      <p class="linha-destaque" id="r-linha"></p>
+    </div>
+
+    <div class="caixa-recaida" id="r-leitura"></div>
+
+    <div class="regra">Falhar um dia é um dia.<br>Falhar dois é uma decisão.</div>
+
+    <div class="cartao-acao">
+      <div class="acao-topo">
+        <div class="acao-titulo" id="r-acao-titulo"></div>
+        <div class="acao-tempo" id="r-acao-tempo"></div>
+      </div>
+      <ol class="passos" id="r-passos"></ol>
+    </div>
+
+    <div style="padding-bottom:44px">
+      <button class="btn btn-1" id="btn-recaida-ok">Entendi. Volto amanhã.</button>
+      <p class="mini">Seu progresso não foi apagado. Você continua exatamente onde estava.</p>
+    </div>
+  </section>
+
+  <!-- ============ FINAL ============ -->
+  <section class="view" id="v-final">
+    <div class="dia-topo">
+      <div class="dia-etiqueta"><b>Ciclo completo</b></div>
+      <h2 id="f-titulo"></h2>
+      <p class="linha-destaque" id="f-linha"></p>
+    </div>
+    <div class="leitura" id="f-leitura"></div>
+    <div style="padding:30px 0 50px">
+      <button class="btn btn-2" id="btn-final-mapa">Rever os 21 dias</button>
+    </div>
+  </section>
+
+</main>
+
+<script src="/config.js"></script>
+<script src="/conteudo.js"></script>
+<script>
+/* ==========================================================
+   CONFIGURAÇÃO
+   Não edite aqui. Os valores ficam no arquivo config.js.
+   Sem SUPABASE_URL = MODO DEMO (só neste aparelho).
+   ========================================================== */
+const CONFIG = window.CEREBRO_RICO || { SUPABASE_URL: "", SUPABASE_ANON_KEY: "" };
+
+/* ==========================================================
+   ESTADO
+   ========================================================== */
+const App = {
+  email: null,
+  nivel: null,           // protocolo21 | protocolo90 | assinante
+  token: null,
+  modo: "demo",          // "demo" | "online"
+  prog: null             // { inicio, dias:{}, falhas:[] }
+};
+
+const HOJE = () => new Date().toISOString().slice(0, 10);
+const diasEntre = (a, b) =>
+  Math.floor((new Date(b + "T00:00:00") - new Date(a + "T00:00:00")) / 86400000);
+
+/* ==========================================================
+   API
+   Uma única porta: a função "acesso" no Supabase.
+   O navegador nunca fala direto com as tabelas — é isso que
+   permite o login sem senha sem deixar o banco aberto.
+   ========================================================== */
+const API = {
+  endereco() {
+    return CONFIG.SUPABASE_URL.replace(/\/+$/, "") + "/functions/v1/acesso";
+  },
+
+  // Manda a chave pública junto. Assim funciona tanto com a
+  // verificação de JWT ligada quanto desligada — e você não
+  // depende de achar aquela configuração no painel.
+  cabecalhos() {
+    const h = { "content-type": "application/json" };
+    const k = CONFIG.SUPABASE_ANON_KEY;
+    if (k) { h["apikey"] = k; h["Authorization"] = "Bearer " + k; }
+    return h;
+  },
+
+  async chama(acao, dados) {
+    const r = await fetch(this.endereco(), {
+      method: "POST",
+      headers: this.cabecalhos(),
+      body: JSON.stringify({ acao, email: App.email, token: App.token, ...dados })
+    });
+    return await r.json();
+  }
+};
+
+/* ==========================================================
+   ARMAZENAMENTO
+   Sempre grava local primeiro (resposta instantânea) e depois
+   sincroniza. Se a internet cair, o usuário não perde o dia.
+   ========================================================== */
+const Store = {
+  chave(email) { return "cr_prog_" + (email || "demo"); },
+  vazio() { return { inicio: HOJE(), dias: {}, falhas: [] }; },
+
+  local(email) {
+    const cru = localStorage.getItem(this.chave(email));
+    if (cru) { try { return JSON.parse(cru); } catch (e) {} }
+    return null;
+  },
+
+  async salvar(email, prog) {
+    localStorage.setItem(this.chave(email), JSON.stringify(prog));
+    if (App.modo === "online") {
+      try { await API.chama("salvar", { progresso: prog }); }
+      catch (e) { console.warn("salvar:", e); }
+    }
+  }
+};
+
+/* ==========================================================
+   EVENTOS DE USO
+   Daqui sai a retenção D7/D14 — o número que decide se a
+   assinatura recorrente é um negócio real. Não trava a tela:
+   se falhar, o app segue normal.
+   ========================================================== */
+const Eventos = {
+  registra(tipo, dia) {
+    if (App.modo !== "online" || !App.email) return;
+    API.chama("evento", { tipo, dia: dia ?? null }).catch(() => {});
+  }
+};
+
+/* ==========================================================
+   SOM
+   Sintetizado na hora pelo navegador — nenhum arquivo de
+   áudio, zero peso. O som do "feito" sobe (dó → sol). O do
+   "não fiz" é grave, curto e neutro: registra sem punir.
+   ========================================================== */
+const Som = {
+  ctx: null,
+  ligado() { return localStorage.getItem("cr_som") !== "0"; },
+  alterna() {
+    localStorage.setItem("cr_som", this.ligado() ? "0" : "1");
+    document.getElementById("btn-som").textContent = "Som: " + (this.ligado() ? "on" : "off");
+    if (this.ligado()) this.feito();
+  },
+  toca(notas) {
+    if (!this.ligado()) return;
+    try {
+      if (!this.ctx) this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+      if (this.ctx.state === "suspended") this.ctx.resume();
+      const t0 = this.ctx.currentTime;
+      notas.forEach(([freq, ini, dur, vol]) => {
+        const o = this.ctx.createOscillator(), g = this.ctx.createGain();
+        o.type = "sine"; o.frequency.value = freq;
+        g.gain.setValueAtTime(0.0001, t0 + ini);
+        g.gain.linearRampToValueAtTime(vol, t0 + ini + 0.014);
+        g.gain.exponentialRampToValueAtTime(0.0001, t0 + ini + dur);
+        o.connect(g); g.connect(this.ctx.destination);
+        o.start(t0 + ini); o.stop(t0 + ini + dur + 0.03);
+      });
+    } catch (e) {}
+  },
+  feito()  { this.toca([[523.25, 0, 0.20, 0.17], [783.99, 0.085, 0.38, 0.14]]); },
+  naoFiz() { this.toca([[329.63, 0, 0.30, 0.09]]); },
+  fase()   { this.toca([[523.25, 0, 0.24, 0.15], [659.25, 0.11, 0.26, 0.14], [783.99, 0.23, 0.62, 0.15]]); }
+};
+
+/* ==========================================================
+   VIBRAÇÃO
+   Fecha o loop de recompensa no corpo, não na tela.
+   ========================================================== */
+const Vibra = {
+  bate(p) { try { if (navigator.vibrate) navigator.vibrate(p); } catch (e) {} },
+  feito()  { this.bate([14, 48, 26]); },
+  naoFiz() { this.bate(16); },
+  fase()   { this.bate([16, 55, 16, 55, 44]); }
+};
+
+/* ==========================================================
+   LEMBRETE DIÁRIO
+   Gera um evento de calendário que se repete todo dia até o
+   dia 21. Funciona sem servidor de notificação e sobrevive ao
+   app fechado — que é justamente o problema a resolver.
+   ========================================================== */
+const Lembrete = {
+  gera(hora) {
+    const [h, m] = hora.split(":").map(Number);
+    const agora = new Date();
+    const ini = new Date(agora);
+    ini.setHours(h, m, 0, 0);
+    if (ini <= agora) ini.setDate(ini.getDate() + 1);   // se já passou, começa amanhã
+
+    const p = n => String(n).padStart(2, "0");
+    const local = d => `${d.getFullYear()}${p(d.getMonth()+1)}${p(d.getDate())}T${p(d.getHours())}${p(d.getMinutes())}00`;
+    const utc = d => d.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+    const fim = new Date(ini.getTime() + 15 * 60000);
+    const restantes = Math.max(1, 22 - Regras.diaAtual());
+
+    const ics = [
+      "BEGIN:VCALENDAR",
+      "VERSION:2.0",
+      "PRODID:-//Cerebro Rico//Ciclo do Comando//PT-BR",
+      "CALSCALE:GREGORIAN",
+      "BEGIN:VEVENT",
+      "UID:cerebro-rico-" + Date.now() + "@app",
+      "DTSTAMP:" + utc(agora),
+      "DTSTART:" + local(ini),
+      "DTEND:" + local(fim),
+      "RRULE:FREQ=DAILY;COUNT=" + restantes,
+      "SUMMARY:Cérebro Rico — seu dia",
+      "DESCRIPTION:Abra o app e execute o dia de hoje. Leva 10 minutos.",
+      "BEGIN:VALARM",
+      "TRIGGER:PT0M",
+      "ACTION:DISPLAY",
+      "DESCRIPTION:Cérebro Rico — seu dia",
+      "END:VALARM",
+      "END:VEVENT",
+      "END:VCALENDAR"
+    ].join("\r\n");
+
+    const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "cerebro-rico-lembrete.ics";
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(a.href), 1500);
+
+    localStorage.setItem("cr_lembrete", hora);
+    document.getElementById("lem-ok").classList.add("on");
+  }
+};
+
+/* ==========================================================
+   MENSAGENS DE ACESSO
+   ========================================================== */
+const MSG_ACESSO = {
+  sem_compra:    "Não encontramos uma compra com esse e-mail. Use o mesmo e-mail que você digitou no checkout.",
+  reembolsado:   "Este acesso foi encerrado porque a compra foi reembolsada.",
+  chargeback:    "Este acesso está suspenso. Fale com o suporte para regularizar.",
+  cancelado:     "Sua assinatura foi cancelada, então o acesso foi encerrado.",
+  email_invalido:"Digite um e-mail válido.",
+  erro:          "Não consegui verificar seu acesso agora. Tente de novo em instantes."
+};
+
+/* ==========================================================
+   REGRAS DO PROTOCOLO
+   ========================================================== */
+const Regras = {
+  // Primeiro dia ainda não concluído. Falhar NÃO avança e NÃO zera.
+  diaAtual() {
+    for (let d = 1; d <= 21; d++) {
+      if (!App.prog.dias[d] || App.prog.dias[d].status !== "feito") return d;
+    }
+    return 22;
+  },
+
+  concluidos() {
+    return Object.values(App.prog.dias).filter(d => d.status === "feito").length;
+  },
+
+  // Um dia por dia de calendário. Quem falta não perde nada: só retoma.
+  liberado(dia) {
+    const decorridos = diasEntre(App.prog.inicio, HOJE());
+    const jaFezHoje = Object.values(App.prog.dias)
+      .some(d => d.status === "feito" && d.data === HOJE());
+    if (jaFezHoje) return false;
+    return decorridos >= dia - 1;
+  },
+
+  falhouHoje() {
+    return App.prog.falhas.some(f => f.data === HOJE());
+  },
+
+  faseDe(dia) {
+    return FASES.find(f => dia >= f.dias[0] && dia <= f.dias[1]) || FASES[2];
+  }
+};
+
+/* ==========================================================
+   NAVEGAÇÃO
+   ========================================================== */
+function mostrar(id) {
+  document.querySelectorAll(".view").forEach(v => v.classList.remove("on"));
+  document.getElementById(id).classList.add("on");
+  window.scrollTo(0, 0);
+}
+
+/* ==========================================================
+   TELA: MAPA
+   ========================================================== */
+let ultimoMarcado = 0;   // qual célula acabou de virar, para a animação
+
+function renderMapa() {
+  const feitos = Regras.concluidos();
+  const atual = Regras.diaAtual();
+  document.getElementById("m-feitos").textContent = feitos;
+
+  // anel de progresso
+  const barra = document.getElementById("m-barra");
+  const volta = 2 * Math.PI * 52;
+  barra.style.strokeDasharray = volta;
+  barra.style.strokeDashoffset = volta * (1 - feitos / 21);
+
+  // frase de estado, ao lado do anel
+  const frases = [
+    "Você ainda não começou. O dia 1 leva 10 minutos.",
+    "Começou. O que importa agora é aparecer amanhã.",
+    "Primeira semana em andamento. Nada foi adicionado ainda — só cortado.",
+    "Você passou do ponto em que a maioria para.",
+    "Isso já não é tentativa. É rotina."
+  ];
+  const i = feitos === 0 ? 0 : feitos <= 2 ? 1 : feitos <= 7 ? 2 : feitos <= 14 ? 3 : 4;
+  document.getElementById("m-frase").textContent = frases[i];
+
+  const grade = document.getElementById("m-grade");
+  grade.innerHTML = "";
+  for (let d = 1; d <= 21; d++) {
+    const c = document.createElement("div");
+    c.className = "cel";
+    const reg = App.prog.dias[d];
+    if (reg && reg.status === "feito") c.classList.add("feito");
+    else if (App.prog.falhas.some(f => f.dia === d)) c.classList.add("falhou");
+    if (d === atual && atual <= 21) c.classList.add("atual");
+    if (d === ultimoMarcado) c.classList.add("nova");
+    c.textContent = d;
+    grade.appendChild(c);
+  }
+  ultimoMarcado = 0;
+
+  const cx = document.getElementById("m-fases");
+  cx.innerHTML = "";
+  FASES.forEach(f => {
+    const [ini, fim] = f.dias;
+    const total = fim - ini + 1;
+    let feitosFase = 0;
+    for (let d = ini; d <= fim; d++)
+      if (App.prog.dias[d] && App.prog.dias[d].status === "feito") feitosFase++;
+    const pct = Math.round((feitosFase / total) * 100);
+
+    const el = document.createElement("div");
+    el.className = "fase" + (atual >= ini && atual <= fim ? " ativa" : "") + (feitosFase === total ? " completa" : "");
+    el.innerHTML = `
+      <div class="fase-topo">
+        <div class="fase-nome">${f.id}. ${f.nome}</div>
+        <div class="fase-dias">DIAS ${ini}–${fim}</div>
+      </div>
+      <div class="fase-desc">${f.promessa}</div>
+      <div class="fase-barra"><i style="width:${pct}%"></i></div>`;
+    cx.appendChild(el);
+  });
+
+  const btn = document.getElementById("btn-abrir-dia");
+  if (atual > 21) {
+    btn.textContent = "Ver o fechamento";
+  } else if (Regras.liberado(atual)) {
+    btn.textContent = "Abrir o dia " + atual;
+  } else {
+    btn.textContent = "Dia " + atual + " abre amanhã";
+  }
+}
+
+/* ==========================================================
+   TELA: DIA
+   ========================================================== */
+function renderDia(dia) {
+  const D = DIAS.find(x => x.dia === dia);
+  if (!D) return;
+  const fase = Regras.faseDe(dia);
+
+  document.getElementById("d-etiqueta").innerHTML =
+    `Fase ${fase.id} · ${fase.nome} &nbsp;—&nbsp; <b>Dia ${D.dia} de 21</b>`;
+  document.getElementById("d-titulo").textContent = D.titulo;
+  document.getElementById("d-linha").textContent = D.linha;
+
+  document.getElementById("d-leitura").innerHTML =
+    D.leitura.map(p => `<p>${p}</p>`).join("");
+
+  document.getElementById("d-acao-titulo").textContent = D.acao.titulo;
+  document.getElementById("d-acao-tempo").textContent = D.acao.tempo;
+  document.getElementById("d-passos").innerHTML =
+    D.acao.passos.map(p => `<li>${p}</li>`).join("");
+
+  document.getElementById("d-checkin").textContent = D.checkin;
+  mostrar("v-dia");
+}
+
+/* ==========================================================
+   TELA: RECAÍDA
+   ========================================================== */
+function renderRecaida() {
+  document.getElementById("r-titulo").textContent = RECAIDA.titulo;
+  document.getElementById("r-linha").textContent = RECAIDA.linha;
+  document.getElementById("r-leitura").innerHTML =
+    RECAIDA.leitura.map(p => `<p>${p}</p>`).join("");
+  document.getElementById("r-acao-titulo").textContent = RECAIDA.acao.titulo;
+  document.getElementById("r-acao-tempo").textContent = RECAIDA.acao.tempo;
+  document.getElementById("r-passos").innerHTML =
+    RECAIDA.acao.passos.map(p => `<li>${p}</li>`).join("");
+  mostrar("v-recaida");
+}
+
+/* ==========================================================
+   TELA: FINAL
+   ========================================================== */
+function renderFinal() {
+  document.getElementById("f-titulo").textContent = FINAL.titulo;
+  document.getElementById("f-linha").textContent = FINAL.linha;
+  document.getElementById("f-leitura").innerHTML =
+    FINAL.leitura.map(p => `<p>${p}</p>`).join("");
+  mostrar("v-final");
+}
+
+/* ==========================================================
+   ROTEAMENTO PRINCIPAL
+   ========================================================== */
+function irParaOndeDeve() {
+  const atual = Regras.diaAtual();
+
+  if (atual > 21) { renderFinal(); return; }
+  if (Regras.falhouHoje()) { renderRecaida(); return; }
+
+  if (!Regras.liberado(atual)) {
+    const feitos = Regras.concluidos();
+    document.getElementById("e-titulo").textContent =
+      feitos === 0 ? "Volte amanhã." : "Dia " + feitos + " concluído.";
+    document.getElementById("e-texto").textContent =
+      "O dia " + atual + " abre amanhã. Não adianta adiantar — o intervalo faz parte do método.";
+    mostrar("v-espera");
+    return;
+  }
+
+  renderDia(atual);
+}
+
+/* ==========================================================
+   TELA: VIRADA DE FASE
+   Aparece ao concluir os dias 7 e 14. Marcar a passagem dá
+   sensação de progresso real — muito mais que um contador.
+   ========================================================== */
+const TEXTO_FASE = {
+  1: "Sete dias e você não adicionou nada. Só tirou. O espaço que sobrou pode incomodar — é o sinal de que funcionou. Agora entra uma coisa. Uma só, e ela vai parecer pequena demais para fazer diferença. É exatamente por isso que vai funcionar.",
+  2: "Duas semanas. A ação já acontece em horário fixo, presa a um gatilho, registrada e conhecida por outra pessoa. Agora vem a parte que quase ninguém ensina, e que é a razão pela qual todas as suas outras tentativas terminaram: o que fazer depois de falhar."
+};
+
+function renderFase(concluida) {
+  const proxima = FASES[concluida];   // FASES[1] = fase 2, FASES[2] = fase 3
+  document.getElementById("fa-selo").textContent = "Fase " + concluida + " concluída";
+  document.getElementById("fa-num").textContent = concluida === 1 ? "7" : "14";
+  document.getElementById("fa-titulo").textContent = "Agora: " + proxima.nome;
+  document.getElementById("fa-promessa").textContent = proxima.promessa;
+  document.getElementById("fa-texto").textContent = TEXTO_FASE[concluida];
+
+  for (let i = 1; i <= 3; i++) {
+    const m = document.getElementById("fa-m" + i);
+    m.className = "fase-marco" + (i <= concluida ? " feita" : i === concluida + 1 ? " agora" : "");
+  }
+
+  Som.fase(); Vibra.fase();
+  mostrar("v-fase");
+}
+
+/* ==========================================================
+   AÇÕES DO USUÁRIO
+   ========================================================== */
+function telaEspera(dia, novo) {
+  document.getElementById("e-titulo").textContent = "Dia " + dia + " concluído.";
+  document.getElementById("e-texto").textContent =
+    "O dia " + novo + " abre amanhã. Não adianta adiantar — o intervalo faz parte do método.";
+  mostrar("v-espera");
+}
+
+async function marcarFeito() {
+  const dia = Regras.diaAtual();
+  App.prog.dias[dia] = { status: "feito", data: HOJE() };
+  Som.feito(); Vibra.feito();
+  await Store.salvar(App.email, App.prog);
+  Eventos.registra("dia_concluido", dia);
+  if (dia === 21) Eventos.registra("terminou_protocolo", 21);
+
+  ultimoMarcado = dia;
+  renderMapa();
+
+  const novo = Regras.diaAtual();
+  if (novo > 21) { renderFinal(); return; }
+
+  // dias 7 e 14 fecham uma fase: tela de passagem antes da espera
+  if (dia === 7 || dia === 14) {
+    App.esperaPendente = [dia, novo];
+    setTimeout(() => renderFase(dia === 7 ? 1 : 2), 260);
+    return;
+  }
+
+  telaEspera(dia, novo);
+}
+
+async function marcarNaoFiz() {
+  const dia = Regras.diaAtual();
+  App.prog.falhas.push({ dia, data: HOJE() });
+  Som.naoFiz(); Vibra.naoFiz();
+  await Store.salvar(App.email, App.prog);   // dia NÃO avança, progresso NÃO zera
+  Eventos.registra("dia_falhado", dia);
+  renderMapa();
+  renderRecaida();
+}
+
+/* ==========================================================
+   LOGIN — só o e-mail
+   ========================================================== */
+function erroLogin(msg) {
+  document.getElementById("login-erro").innerHTML =
+    msg ? `<div class="erro">${msg}</div>` : "";
+}
+
+async function entrarComEmail(email, silencioso) {
+  email = (email || "").trim().toLowerCase();
+  if (!email.includes("@")) { erroLogin(MSG_ACESSO.email_invalido); return false; }
+
+  // --- modo demo: sem backend, qualquer e-mail entra ---
+  if (App.modo === "demo") {
+    App.email = email;
+    App.nivel = "protocolo21";
+    App.prog = Store.local(email) || Store.vazio();
+    await Store.salvar(email, App.prog);
+    abrirApp();
+    return true;
+  }
+
+  const btn = document.getElementById("btn-entrar");
+  if (!silencioso) { btn.disabled = true; btn.textContent = "Entrando…"; }
+
+  let r;
+  try {
+    r = await fetch(API.endereco(), {
+      method: "POST",
+      headers: API.cabecalhos(),
+      body: JSON.stringify({ acao: "entrar", email })
+    }).then(x => x.json());
+  } catch (e) {
+    r = { ok: false, motivo: "erro" };
+  }
+
+  btn.disabled = false; btn.textContent = "Entrar";
+
+  if (!r || !r.ok) {
+    sairLocal();
+    erroLogin(MSG_ACESSO[r && r.motivo] || MSG_ACESSO.erro);
+    mostrar("v-login");
+    return false;
+  }
+
+  App.email = email;
+  App.nivel = r.nivel;
+  App.token = r.token;
+  App.prog  = r.progresso && r.progresso.inicio ? r.progresso : Store.vazio();
+
+  localStorage.setItem("cr_email", email);
+  localStorage.setItem("cr_token", r.token);
+  localStorage.setItem(Store.chave(email), JSON.stringify(App.prog));
+
+  abrirApp();
+  return true;
+}
+
+function abrirApp() {
+  erroLogin("");
+  document.getElementById("topo").style.display = "block";
+  renderMapa();
+  irParaOndeDeve();
+}
+
+function sairLocal() {
+  localStorage.removeItem("cr_email");
+  localStorage.removeItem("cr_token");
+  App.email = null; App.nivel = null; App.token = null; App.prog = null;
+  document.getElementById("topo").style.display = "none";
+}
+
+function sair() {
+  sairLocal();
+  document.getElementById("in-email").value = "";
+  erroLogin("");
+  mostrar("v-login");
+}
+
+/* ==========================================================
+   EVENTOS DA TELA
+   ========================================================== */
+document.getElementById("btn-entrar").onclick = () =>
+  entrarComEmail(document.getElementById("in-email").value);
+
+document.getElementById("in-email").addEventListener("keydown", e => {
+  if (e.key === "Enter") entrarComEmail(e.target.value);
+});
+
+document.getElementById("btn-fiz").onclick = marcarFeito;
+document.getElementById("btn-nao-fiz").onclick = marcarNaoFiz;
+document.getElementById("btn-voltar-mapa").onclick = () => { renderMapa(); mostrar("v-mapa"); };
+document.getElementById("btn-espera-mapa").onclick = () => { renderMapa(); mostrar("v-mapa"); };
+document.getElementById("btn-recaida-ok").onclick = () => { renderMapa(); mostrar("v-mapa"); };
+document.getElementById("btn-final-mapa").onclick = () => { renderMapa(); mostrar("v-mapa"); };
+document.getElementById("btn-abrir-dia").onclick = irParaOndeDeve;
+document.getElementById("btn-sair").onclick = sair;
+
+document.getElementById("btn-som").onclick = () => Som.alterna();
+
+document.getElementById("btn-fase-ok").onclick = () => {
+  const p = App.esperaPendente;
+  App.esperaPendente = null;
+  if (p) telaEspera(p[0], p[1]); else { renderMapa(); mostrar("v-mapa"); }
+};
+
+document.getElementById("btn-lembrete").onclick = () =>
+  Lembrete.gera(document.getElementById("lem-hora").value || "07:00");
+
+/* ==========================================================
+   INICIALIZAÇÃO
+   ========================================================== */
+async function iniciar() {
+  App.modo = CONFIG.SUPABASE_URL ? "online" : "demo";
+  document.getElementById("boot").style.display = "none";
+
+  document.getElementById("btn-som").textContent = "Som: " + (Som.ligado() ? "on" : "off");
+  const horaSalva = localStorage.getItem("cr_lembrete");
+  if (horaSalva) {
+    document.getElementById("lem-hora").value = horaSalva;
+    document.getElementById("btn-lembrete").textContent = "Baixar de novo";
+  }
+
+  const salvo = localStorage.getItem("cr_email");
+  if (salvo) {
+    // Reentrar revalida a compra. Se houve reembolso desde a última
+    // vez, o acesso cai aqui automaticamente.
+    const ok = await entrarComEmail(salvo, true);
+    if (ok) return;
+  }
+
+  mostrar("v-login");
+}
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () =>
+    navigator.serviceWorker.register("/sw.js", { scope: "/" }).catch(() => {}));
+}
+
+iniciar();
+</script>
+</body>
+</html>

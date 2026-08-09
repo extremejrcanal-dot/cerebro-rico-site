@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0d0d0f">
+<title>Cérebro Rico — 90 Dias</title>
+<link rel="icon" href="/icone.png">
+<link rel="apple-touch-icon" href="/icone.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --dark:#0d0d0f; --surf:#151518; --surf2:#1c1c21;
+  --line:rgba(255,255,255,.07); --line2:rgba(255,255,255,.12);
+  --gold:#d99a2b; --cream:#ece9e4;
+  --t2:rgba(255,255,255,.6); --t3:rgba(255,255,255,.35); --body:#d8d4cd;
+  --ok:#4a8f5e;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{
+  background:var(--dark);color:var(--cream);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;font-size:16px;line-height:1.65;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+button,input{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer}
+.wrap{max-width:620px;margin:0 auto;padding:0 20px}
+.oculto{display:none!important}
+
+/* topo */
+header{
+  border-bottom:1px solid var(--line);padding:18px 0;
+  position:sticky;top:0;background:rgba(13,13,15,.92);
+  backdrop-filter:blur(12px);z-index:20;
+}
+header .wrap{display:flex;align-items:center;gap:12px}
+.simbolo{width:26px;height:26px;flex:0 0 26px}
+.marca{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--t3);font-weight:600;flex:1}
+.sair{font-size:12.5px;color:var(--t3);text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- LOGIN ---------- */
+#login{padding:14vh 0 60px;text-align:center}
+#login h1{font-size:26px;font-weight:700;letter-spacing:-.03em;margin-bottom:12px}
+#login p{color:var(--t2);font-size:15px;margin-bottom:28px}
+.campo{
+  width:100%;background:var(--surf);border:1px solid var(--line2);
+  border-radius:12px;padding:16px 18px;font-size:16px;margin-bottom:12px;
+  text-align:center;outline:none;
+}
+.campo:focus{border-color:var(--gold)}
+.btn{
+  width:100%;background:var(--gold);color:#1a1206;border-radius:12px;
+  padding:16px;font-size:16px;font-weight:700;text-align:center;
+}
+.btn:active{transform:scale(.99)}
+.btn[disabled]{opacity:.5}
+.aviso{
+  margin-top:18px;font-size:14px;color:#e0a878;line-height:1.5;
+  background:rgba(196,98,45,.1);border:1px solid rgba(196,98,45,.25);
+  border-radius:10px;padding:14px 16px;text-align:left;
+}
+
+/* ---------- PAINEL ---------- */
+main{padding:30px 0 70px}
+.titulo{font-size:24px;font-weight:700;letter-spacing:-.03em;margin-bottom:6px}
+.sub{color:var(--t3);font-size:14px;margin-bottom:28px}
+
+.bloco-lab{
+  display:flex;align-items:center;gap:12px;margin:34px 0 14px;
+}
+.bloco-lab span{
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);font-weight:700;white-space:nowrap;
+}
+.bloco-lab i{flex:1;height:1px;background:var(--line);display:block}
+.bloco-desc{font-size:13.5px;color:var(--t3);margin:-6px 0 16px;font-style:italic}
+
+.card{
+  width:100%;text-align:left;display:flex;align-items:center;gap:15px;
+  background:var(--surf);border:1px solid var(--line);border-radius:14px;
+  padding:17px 18px;margin-bottom:10px;transition:border-color .15s;
+}
+.card:not(.trancada):hover{border-color:var(--line2)}
+.card .num{
+  flex:0 0 34px;height:34px;border-radius:10px;background:var(--surf2);
+  display:grid;place-items:center;font-size:13px;font-weight:700;color:var(--gold);
+}
+.card .txt{flex:1;min-width:0}
+.card .nome{font-size:15.5px;font-weight:600;line-height:1.35}
+.card .meta{font-size:12.5px;color:var(--t3);margin-top:3px}
+.card .seta{color:var(--t3);font-size:18px}
+.card.trancada{opacity:.42;cursor:default}
+.card.trancada .num{color:var(--t3)}
+.card.feita .num{background:rgba(74,143,94,.18);color:var(--ok)}
+
+/* ---------- LEITURA ---------- */
+#semana{padding:24px 0 80px}
+.voltar{
+  font-size:13.5px;color:var(--t3);margin-bottom:22px;
+  display:inline-flex;align-items:center;gap:6px;
+}
+#semana .lab{
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);font-weight:700;display:block;margin-bottom:10px;
+}
+#semana h2{
+  font-size:26px;font-weight:700;letter-spacing:-.03em;
+  line-height:1.2;margin-bottom:26px;
+}
+#semana h3{
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--t3);font-weight:700;margin:36px 0 14px;
+  padding-top:22px;border-top:1px solid var(--line);
+}
+#semana p{margin-bottom:17px;color:var(--body)}
+#semana strong{color:var(--cream);font-weight:600}
+#semana ul{margin:0 0 17px 20px;color:var(--body)}
+#semana li{margin-bottom:8px}
+.frase{
+  border-left:3px solid var(--gold);background:rgba(217,154,43,.055);
+  border-radius:0 10px 10px 0;padding:18px 20px;margin:24px 0;
+}
+.frase p{margin:0;color:var(--cream);font-weight:600;font-size:19px;line-height:1.35}
+.linha{
+  background:var(--surf);border:1px solid var(--line2);border-radius:10px;
+  padding:14px 16px;margin:14px 0;font-family:ui-monospace,monospace;
+  font-size:14px;color:var(--t2);
+}
+.criterio{
+  background:var(--surf);border:1px solid var(--line2);
+  border-radius:14px;padding:22px;margin:26px 0;
+}
+.criterio p:last-child{margin-bottom:0}
+
+.marcar{
+  width:100%;border:1px solid var(--line2);border-radius:12px;
+  padding:16px;font-size:15px;font-weight:600;color:var(--t2);
+  margin-top:30px;text-align:center;
+}
+.marcar.ativa{background:rgba(74,143,94,.14);border-color:rgba(74,143,94,.4);color:#7fc294}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <svg class="simbolo" viewBox="0 0 40 40" fill="none">
+      <path d="M20 5 A15 15 0 0 1 35 20" stroke="#d99a2b" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M20 11 A9 9 0 0 1 29 20" stroke="#d99a2b" stroke-width="2.4" stroke-linecap="round" opacity=".62"/>
+      <path d="M20 17 A3 3 0 0 1 23 20" stroke="#d99a2b" stroke-width="2.4" stroke-linecap="round" opacity=".34"/>
+      <rect x="18.6" y="24" width="2.8" height="11" rx="1.4" fill="#d99a2b"/>
+    </svg>
+    <span class="marca">90 Dias</span>
+    <button class="sair oculto" id="btSair">sair</button>
+  </div>
+</header>
+
+<!-- LOGIN -->
+<section id="login" class="wrap">
+  <h1>Seu programa de 90 dias</h1>
+  <p>Digite o e-mail que você usou na compra.</p>
+  <input class="campo" id="email" type="email" inputmode="email"
+         autocomplete="email" placeholder="seu@email.com">
+  <button class="btn" id="btEntrar">Entrar</button>
+  <div class="aviso oculto" id="aviso"></div>
+</section>
+
+<!-- PAINEL -->
+<main id="painel" class="wrap oculto">
+  <div class="titulo">As 12 semanas</div>
+  <div class="sub" id="subInfo"></div>
+  <div id="lista"></div>
+</main>
+
+<!-- LEITURA -->
+<section id="semana" class="wrap oculto"></section>
+
+<script>
+/* ============================================================
+   CONFIG — usa o mesmo config.js do app.
+   Se este arquivo estiver na mesma pasta, o script abaixo o carrega.
+   ============================================================ */
+</script>
+<script src="/config.js"></script>
+<script>
+const CFG = window.CEREBRO_RICO || {};
+
+/* ============================================================
+   CONTEÚDO DAS 12 SEMANAS
+   ============================================================ */
+const BLOCOS = [
+  {n:1, nome:"Proteção",  faixa:[1,4],  desc:"O inimigo é a queda de urgência."},
+  {n:2, nome:"Expansão",  faixa:[5,8],  desc:"O inimigo é a ambição."},
+  {n:3, nome:"Autonomia", faixa:[9,12], desc:"O inimigo é a dependência do sistema."},
+];
+
+const SEMANAS = [
+{
+  n:1, titulo:"A armadilha do sucesso", bloco:1,
+  html:`
+<p>Você terminou 21 dias. Vale parar um segundo nisso, porque é provável que seja a primeira vez.</p>
+<p>Agora eu preciso te avisar sobre o que vem, e não é o que você imagina.</p>
+<p>O perigo das próximas semanas não é você falhar. É você melhorar.</p>
+<p>Pense em por que você começou. Não a razão bonita — a real. Foi algum incômodo. Um prazo que estourou, uma conversa que doeu, uma noite em que você olhou pro dia e não achou nada. Tinha uma pressão, e ela te empurrou pra dentro do protocolo.</p>
+<p>Essa pressão já diminuiu. Ela diminuiu <strong>porque você executou</strong>.</p>
+<p>E aqui está o problema: o motivo que sustentava a ação era a dor. Sem a dor, a ação fica sem justificativa. Você não vai decidir parar. Vai só parar de ter um motivo pra continuar — e um dia a ação simplesmente não acontece, e você nem repara.</p>
+<div class="frase"><p>Você não para porque falhou. Para porque melhorou.</p></div>
+<p>É o que acontece com remédio. A pessoa toma dez dias, melhora no quinto, e para no sexto. O sintoma passou. Só que passou por causa do remédio.</p>
+<p>A saída não é buscar mais dor. Gente que se obriga através do medo até funciona, mas por pouco tempo — e sai machucada.</p>
+<p>A saída é <strong>trocar a razão</strong>.</p>
+<p>Enquanto sua ação estiver justificada por um problema, ela vai durar exatamente o tempo que o problema durar. Quando ela passa a fazer parte de quem você é, ela não precisa mais de justificativa. Ninguém acorda decidindo se hoje vai escovar os dentes. Não é disciplina — é identidade. Você não avalia, só faz.</p>
+<p>Essa troca não acontece sozinha. Ela acontece quando você nomeia.</p>
+<h3>A ação da semana</h3>
+<p>Escreva uma frase, à mão, e deixe onde você vê todo dia:</p>
+<div class="linha">Eu sou alguém que ______________________</div>
+<p>Preencha com a <strong>ação</strong>, nunca com o resultado.</p>
+<ul>
+<li><strong>Não:</strong> "sou alguém que vai ter um corpo melhor" — resultado depende de coisas fora do seu controle</li>
+<li><strong>Sim:</strong> "sou alguém que treina de manhã" — ação depende só de você</li>
+</ul>
+<p>Cole por cima da razão antiga. Se a antiga estava escrita em algum lugar, tire.</p>
+<h3>A revisão</h3>
+<p>Nos últimos 7 dias, quantas vezes você pensou <em>"hoje eu podia pular"</em>?</p>
+<p>Não é para se cobrar. É para você começar a reparar em quando esse pensamento aparece — porque ele aparece antes da falha, não durante.</p>`
+},
+{
+  n:2, titulo:"Os ladrões de constância", bloco:1,
+  html:`
+<p>Você tem quase um mês de registro. Isso é dado suficiente pra fazer uma coisa que quase ninguém faz: <strong>procurar padrão nas suas falhas.</strong></p>
+<p>A maioria das pessoas trata cada falha como evento isolado, e sempre com a mesma explicação — "faltou vontade". Só que "faltou vontade" não explica nada e não dá pra corrigir.</p>
+<p>Repare no que costuma ser verdade:</p>
+<p>Existem <strong>dias da semana</strong> em que você quase nunca executa. Quase sempre é o mesmo dia. Normalmente é aquele com reunião no fim da tarde, ou o dia depois do dia mais pesado, ou a sexta.</p>
+<p>Existem <strong>lugares</strong> onde você nunca produz. Você já sabe qual é, e mesmo assim continua tentando lá.</p>
+<p>Existem <strong>pessoas</strong> depois das quais você não executa. Não por mal — aquela conversa consome alguma coisa, e o que sobra não dá pra tarefa.</p>
+<p>E existe o <strong>horário</strong>. Ação marcada pra depois das 19h falha muito mais do que ação marcada pras 7h. Não é preguiça: à noite você já gastou o dia inteiro decidindo, e o que resta não sustenta uma decisão difícil.</p>
+<div class="frase"><p>Nenhuma dessas coisas está dentro de você. Todas estão na volta.</p></div>
+<p>E é por isso que "se esforçar mais" não resolve — você está tentando vencer na força um problema que é de arquitetura.</p>
+<p>O que resolve é mudar a condição. Você não precisa de mais vontade na sexta. Precisa que a sexta não peça vontade.</p>
+<h3>A ação da semana</h3>
+<p>Abra seu registro dos últimos 30 dias. Responda com número, não com impressão:</p>
+<ul>
+<li>Qual dia da semana concentra suas falhas?</li>
+<li>O que acontece nesse dia que não acontece nos outros?</li>
+<li>Crie uma regra concreta só pra ele.</li>
+</ul>
+<p>A regra precisa ser específica e verificável:</p>
+<ul>
+<li><strong>Não:</strong> "na sexta vou me esforçar mais"</li>
+<li><strong>Sim:</strong> "na sexta eu executo às 7h, antes de tudo, em vez de às 19h"</li>
+<li><strong>Sim:</strong> "na quarta eu faço a versão curta, porque quarta tem reunião às 18h"</li>
+</ul>
+<p>Uma regra. Para um dia. Não mexa no resto.</p>
+<h3>A revisão</h3>
+<p>Qual foi o dia da semana com mais falhas — e a regra que você criou pra ele resolveu?</p>`
+},
+{
+  n:3, titulo:"A versão de dia ruim", bloco:1,
+  html:`
+<p>Vai existir o dia em que não sobra nada.</p>
+<p>Você dormiu quatro horas. Alguém adoeceu. O trabalho virou. Você está doente. Não é falta de vontade — é um dia em que a vida ocupou o espaço todo.</p>
+<p>Nesse dia, tentar a versão completa é a forma mais rápida de quebrar a sequência.</p>
+<p>O raciocínio é simples e é o que derruba quase todo mundo: você olha pro que precisa fazer, vê que não vai conseguir hoje, e conclui que hoje não dá. Aí não faz nada. E o problema não é o dia perdido — é que o dia seguinte fica mais fácil de perder, porque a sequência já quebrou e não tem mais nada pra proteger.</p>
+<p>O que salva é ter, <strong>decidido de antes</strong>, uma versão que cabe em qualquer dia.</p>
+<div class="frase"><p>Não é a versão que serve. É a versão que impede a quebra.</p></div>
+<p>Duas flexões não te deixam mais forte. Uma frase escrita não é um capítulo. Cinco minutos de estudo não ensinam nada. Mas todas as três mantêm a linha inteira, e uma linha inteira é o que produz resultado ao longo de meses.</p>
+<p>Tem uma condição, e ela é a parte que mais gente ignora: <strong>a versão reduzida precisa estar treinada antes de ser necessária.</strong></p>
+<p>Se você só for pensar nela no dia ruim, não vai pensar. No dia ruim você não tem capacidade de improvisar — é justamente o dia em que sua cabeça não está disponível pra decidir nada.</p>
+<h3>A ação da semana</h3>
+<p><strong>1.</strong> Defina agora a versão que leva menos de 2 minutos:</p>
+<div class="linha">No dia ruim, eu ______________________</div>
+<p>Precisa ser tão pequena que pareça ridícula. Se você sentir que é pouco demais, provavelmente está no tamanho certo.</p>
+<p><strong>2. Teste hoje</strong>, mesmo estando bem. Faça a versão de 2 minutos uma vez, hoje, de propósito. Isso não é desperdício — é o que faz ela existir na sua cabeça como opção real quando você precisar.</p>
+<p><strong>3.</strong> Escreva ela junto com a frase de identidade da semana 1.</p>
+<h3>A revisão</h3>
+<p>Você usou a versão reduzida alguma vez esta semana? Em que dia — e como você se sentiu depois?</p>`
+},
+{
+  n:4, titulo:"Revisão de 30 dias", bloco:1, revisao:true,
+  html:`
+<p>Chegou a hora de contar.</p>
+<p>Isso importa mais do que parece, porque a sensação de estar indo bem ou mal quase nunca é medida contra fatos.</p>
+<p>Acontece assim: alguém executa 24 dos últimos 30. Falha em três dias seguidos numa semana ruim. E é aquela semana que fica na memória — porque falha é vívida e execução é invisível. No dia 30, essa pessoa jura que executou uns doze. E desiste com <strong>24 dias de execução no currículo</strong>, achando que fracassou.</p>
+<p>Contar corrige isso. É a coisa mais simples deste programa inteiro e uma das mais úteis.</p>
+<p>E tem uma segunda função: te dizer se você deve avançar ou repetir.</p>
+<p>Isso não é um julgamento sobre você. É informação sobre o <strong>tamanho da sua ação</strong>. Se você executou pouco, a ação está grande demais pra sua rotina de hoje — e adicionar uma segunda em cima disso derruba as duas.</p>
+<h3>A ação da semana</h3>
+<p><strong>1.</strong> Antes de contar, anote quantos dias você <em>acha</em> que executou. Depois conte de verdade.</p>
+<div class="linha">Eu achava: ______ &nbsp;·&nbsp; Foi: ______ de 30</div>
+<p><strong>2.</strong> Responda:</p>
+<ul>
+<li>Qual foi a maior coisa que saiu neste mês por causa disso?</li>
+<li>Qual foi a semana mais difícil, e o que estava acontecendo nela?</li>
+</ul>
+<h3>O critério</h3>
+<div class="criterio">
+<p><strong>20 ou mais dos 30?</strong> O sistema está de pé. Siga para o Bloco 2 na semana que vem.</p>
+<p><strong>Menos de 20?</strong> Não avance. Sua ação ainda está grande demais.</p>
+<p>Reduza pela metade — literalmente metade: se são 20 minutos, passa a ser 10 — e repita este bloco por mais quatro semanas.</p>
+<p>Isso não é recomeçar. Nada zerou. Você continua com o mesmo tempo de estrada, só com uma ação do tamanho que a sua rotina real comporta.</p>
+</div>
+<p>Quase todo mundo que abandona esse tipo de programa abandona por ter avançado quando devia ter reduzido.</p>`
+},
+/* --- BLOCO 2 e 3: estrutura publicada, leitura completa em produção --- */
+{n:5,  titulo:"A regra da adição",        bloco:2, breve:"Seu instinto vai querer aumentar assim que ficar fácil. Não aumente — a facilidade é sinal de que está funcionando."},
+{n:6,  titulo:"A segunda ação",           bloco:2, breve:"Uma coisa de cada vez, nunca duas ao mesmo tempo. A segunda entra pelo mesmo processo da primeira, do começo."},
+{n:7,  titulo:"A colisão",                bloco:2, breve:"Quando duas ações competem pelo mesmo horário, uma morre. Quase sempre a nova mata a antiga."},
+{n:8,  titulo:"Revisão de 60 dias",       bloco:2, revisao:true, breve:"Conte os dois hábitos separadamente. Um hábito de pé vale mais que dois pela metade."},
+{n:9,  titulo:"O protocolo de retorno",   bloco:3, breve:"Sumir uma semana inteira vai acontecer. Sem plano escrito antes, o retorno não acontece."},
+{n:10, titulo:"Tirar o andaime",          bloco:3, breve:"Lembrete, quadro, alarme. Andaime serve para construir, não para morar."},
+{n:11, titulo:"O teste do dia caótico",   bloco:3, breve:"Hábito não se testa em semana normal. Se testa no dia em que tudo dá errado."},
+{n:12, titulo:"Revisão de 90 dias",       bloco:3, revisao:true, breve:"Recalcule as horas por ano. Conte os 90 dias. Decida o que vem depois."},
+];
+
+/* ============================================================
+   ESTADO
+   ============================================================ */
+const App = { email:"", nivel:"", token:"", inicio:"" };
+
+const HOJE = () => new Date().toISOString().slice(0,10);
+const diasEntre = (a,b) =>
+  Math.round((new Date(b+"T00:00:00") - new Date(a+"T00:00:00")) / 86400000);
+
+/** Semana N abre no dia 21 + 7*(N-1) do protocolo */
+const abreNoDia = n => 21 + 7*(n-1);
+
+function decorridos(){
+  if (!App.inicio) return 0;
+  return diasEntre(App.inicio, HOJE());
+}
+function liberada(n){ return decorridos() >= abreNoDia(n); }
+
+function dataDeAbertura(n){
+  if (!App.inicio) return "";
+  const d = new Date(App.inicio+"T00:00:00");
+  d.setDate(d.getDate() + abreNoDia(n));
+  return d.toLocaleDateString("pt-BR",{day:"2-digit",month:"short"});
+}
+
+/* marcação local — o registro fica no aparelho */
+const chaveFeitas = () => "cr90:" + App.email;
+function feitas(){
+  try { return JSON.parse(localStorage.getItem(chaveFeitas()) || "[]"); }
+  catch { return []; }
+}
+function alterna(n){
+  const f = feitas();
+  const i = f.indexOf(n);
+  if (i >= 0) f.splice(i,1); else f.push(n);
+  localStorage.setItem(chaveFeitas(), JSON.stringify(f));
+  return f.includes(n);
+}
+
+/* ============================================================
+   API — mesma função do app
+   ============================================================ */
+const API = {
+  endereco(){ return String(CFG.SUPABASE_URL||"").replace(/\/+$/,"") + "/functions/v1/acesso"; },
+  cabecalhos(){
+    const h = {"content-type":"application/json"};
+    const k = CFG.SUPABASE_ANON_KEY;
+    if (k){ h["apikey"]=k; h["Authorization"]="Bearer "+k; }
+    return h;
+  },
+  async chama(acao, dados){
+    const r = await fetch(this.endereco(), {
+      method:"POST", headers:this.cabecalhos(),
+      body: JSON.stringify({acao, ...dados})
+    });
+    return r.json();
+  }
+};
+
+/* ============================================================
+   TELAS
+   ============================================================ */
+const $ = id => document.getElementById(id);
+
+function mostra(qual){
+  ["login","painel","semana"].forEach(t => $(t).classList.toggle("oculto", t!==qual));
+  $("btSair").classList.toggle("oculto", qual==="login");
+  window.scrollTo(0,0);
+}
+
+function erro(msg){
+  const a = $("aviso");
+  a.innerHTML = msg;
+  a.classList.remove("oculto");
+}
+
+async function entrar(){
+  const email = $("email").value.trim().toLowerCase();
+  if (!email.includes("@")) return erro("Digite um e-mail válido.");
+
+  $("btEntrar").disabled = true;
+  $("btEntrar").textContent = "Verificando…";
+  $("aviso").classList.add("oculto");
+
+  let r;
+  try { r = await API.chama("entrar", {email}); }
+  catch { r = null; }
+
+  $("btEntrar").disabled = false;
+  $("btEntrar").textContent = "Entrar";
+
+  if (!r) return erro("Não consegui verificar seu acesso agora. Tente de novo em instantes.");
+
+  if (!r.ok){
+    if (r.motivo === "sem_compra")
+      return erro("Não encontrei uma compra com esse e-mail.<br><br>Confira se digitou o mesmo e-mail usado no pagamento. Se comprou com outro, escreva para o suporte que a gente ajusta.");
+    if (r.motivo === "reembolsado" || r.motivo === "chargeback")
+      return erro("Este acesso foi encerrado.");
+    return erro("Não consegui liberar o acesso. Fale com o suporte.");
+  }
+
+  // só quem tem o 90 Dias
+  const NIVEIS_90 = ["protocolo90","protocolo90_simples","assinante"];
+  if (!NIVEIS_90.includes(r.nivel)){
+    return erro("Este e-mail tem acesso ao protocolo de 21 dias, mas ainda não ao programa de 90 dias.<br><br>Se você comprou o 90 Dias e está vendo isso, escreva para o suporte.");
+  }
+
+  App.email  = email;
+  App.nivel  = r.nivel;
+  App.token  = r.token;
+  App.inicio = (r.progresso && r.progresso.inicio) || HOJE();
+  localStorage.setItem("cr90:email", email);
+
+  desenhaPainel();
+  mostra("painel");
+}
+
+function desenhaPainel(){
+  const d = decorridos();
+  const abertas = SEMANAS.filter(s => liberada(s.n)).length;
+  $("subInfo").textContent =
+    `Dia ${d} do seu protocolo · ${abertas} de 12 semanas abertas`;
+
+  const f = feitas();
+  let html = "";
+
+  for (const b of BLOCOS){
+    html += `<div class="bloco-lab"><span>Bloco ${b.n} · ${b.nome}</span><i></i></div>`;
+    html += `<div class="bloco-desc">${b.desc}</div>`;
+
+    for (const s of SEMANAS.filter(x => x.bloco === b.n)){
+      const ok   = liberada(s.n);
+      const done = f.includes(s.n);
+      const meta = ok
+        ? (done ? "concluída" : "disponível")
+        : `abre ${dataDeAbertura(s.n)}`;
+      html += `
+        <button class="card ${ok?"":"trancada"} ${done?"feita":""}"
+                ${ok?`data-semana="${s.n}"`:"disabled"}>
+          <span class="num">${ok && done ? "✓" : s.n}</span>
+          <span class="txt">
+            <span class="nome">${s.titulo}</span>
+            <span class="meta">Semana ${s.n} · ${meta}</span>
+          </span>
+          <span class="seta">${ok?"›":"·"}</span>
+        </button>`;
+    }
+  }
+  $("lista").innerHTML = html;
+
+  $("lista").querySelectorAll("[data-semana]").forEach(b => {
+    b.onclick = () => abreSemana(+b.dataset.semana);
+  });
+}
+
+function abreSemana(n){
+  const s = SEMANAS.find(x => x.n === n);
+  if (!s) return;
+  const b = BLOCOS.find(x => x.n === s.bloco);
+  const done = feitas().includes(n);
+
+  // downsell: sem o roteiro guiado das revisões
+  const simples = App.nivel === "protocolo90_simples";
+
+  let corpo = s.html || `
+    <p>${s.breve}</p>
+    <div class="criterio">
+      <p><strong>Esta semana está sendo finalizada.</strong></p>
+      <p>O conteúdo completo é publicado antes da data de abertura. Você não perde nada — a semana só abre quando estiver aqui.</p>
+    </div>`;
+
+  if (simples && s.revisao){
+    corpo = corpo.replace(/<h3>O critério<\/h3>[\s\S]*?(?=<p>Quase todo mundo|$)/,
+      `<h3>O critério</h3>
+       <div class="criterio">
+         <p>Conte os dias executados nos últimos 30 e compare com o que você achava antes de contar.</p>
+         <p><strong>20 ou mais:</strong> siga. <strong>Menos de 20:</strong> reduza a ação pela metade e repita o bloco.</p>
+       </div>`);
+  }
+
+  $("semana").innerHTML = `
+    <button class="voltar" id="btVoltar">‹ todas as semanas</button>
+    <span class="lab">Bloco ${b.n} · ${b.nome}</span>
+    <h2>${s.titulo}</h2>
+    ${corpo}
+    <button class="marcar ${done?"ativa":""}" id="btMarcar">
+      ${done ? "✓ Semana concluída" : "Marcar semana como concluída"}
+    </button>`;
+
+  $("btVoltar").onclick = () => { desenhaPainel(); mostra("painel"); };
+  $("btMarcar").onclick = () => {
+    const agora = alterna(n);
+    $("btMarcar").classList.toggle("ativa", agora);
+    $("btMarcar").textContent = agora ? "✓ Semana concluída" : "Marcar semana como concluída";
+  };
+
+  mostra("semana");
+}
+
+/* ============================================================
+   INÍCIO
+   ============================================================ */
+$("btEntrar").onclick = entrar;
+$("email").addEventListener("keydown", e => { if (e.key === "Enter") entrar(); });
+$("btSair").onclick = () => {
+  localStorage.removeItem("cr90:email");
+  App.email = ""; $("email").value = ""; mostra("login");
+};
+
+const salvo = localStorage.getItem("cr90:email");
+if (salvo){ $("email").value = salvo; entrar(); }
+</script>
+</body>
+</html>

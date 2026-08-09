@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0d0d0f">
+<title>Cérebro Rico — Extras</title>
+<link rel="icon" href="/icone.png">
+<link rel="apple-touch-icon" href="/icone.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --dark:#0d0d0f; --surf:#151518; --surf2:#1c1c21;
+  --line:rgba(255,255,255,.07); --line2:rgba(255,255,255,.12);
+  --gold:#d99a2b; --cream:#ece9e4;
+  --t2:rgba(255,255,255,.6); --t3:rgba(255,255,255,.35); --body:#d8d4cd;
+  --ok:#4a8f5e;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{
+  background:var(--dark);color:var(--cream);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;font-size:16px;line-height:1.65;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+button,input{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer}
+.wrap{max-width:620px;margin:0 auto;padding:0 20px}
+.oculto{display:none!important}
+
+header{
+  border-bottom:1px solid var(--line);padding:18px 0;position:sticky;top:0;
+  background:rgba(13,13,15,.92);backdrop-filter:blur(12px);z-index:20;
+}
+header .wrap{display:flex;align-items:center;gap:12px}
+.simbolo{width:26px;height:26px;flex:0 0 26px}
+.marca{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--t3);font-weight:600;flex:1}
+.sair{font-size:12.5px;color:var(--t3);text-decoration:underline;text-underline-offset:3px}
+
+#login{padding:14vh 0 60px;text-align:center}
+#login h1{font-size:26px;font-weight:700;letter-spacing:-.03em;margin-bottom:12px}
+#login p{color:var(--t2);font-size:15px;margin-bottom:28px}
+.campo{
+  width:100%;background:var(--surf);border:1px solid var(--line2);border-radius:12px;
+  padding:16px 18px;font-size:16px;margin-bottom:12px;text-align:center;outline:none;
+}
+.campo:focus{border-color:var(--gold)}
+.btn{width:100%;background:var(--gold);color:#1a1206;border-radius:12px;padding:16px;font-size:16px;font-weight:700;text-align:center}
+.btn[disabled]{opacity:.5}
+.aviso{
+  margin-top:18px;font-size:14px;color:#e0a878;line-height:1.5;
+  background:rgba(196,98,45,.1);border:1px solid rgba(196,98,45,.25);
+  border-radius:10px;padding:14px 16px;text-align:left;
+}
+
+main{padding:30px 0 70px}
+.titulo{font-size:24px;font-weight:700;letter-spacing:-.03em;margin-bottom:6px}
+.sub{color:var(--t3);font-size:14px;margin-bottom:28px}
+
+.grupo{
+  display:flex;align-items:center;gap:12px;margin:32px 0 8px;
+}
+.grupo span{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;white-space:nowrap}
+.grupo i{flex:1;height:1px;background:var(--line);display:block}
+.grupo-desc{font-size:13.5px;color:var(--t3);margin:0 0 14px;font-style:italic}
+
+.card{
+  width:100%;text-align:left;display:flex;align-items:center;gap:15px;
+  background:var(--surf);border:1px solid var(--line);border-radius:14px;
+  padding:16px 18px;margin-bottom:10px;
+}
+.card .ic{
+  flex:0 0 34px;height:34px;border-radius:10px;background:var(--surf2);
+  display:grid;place-items:center;font-size:13px;font-weight:700;color:var(--gold);
+}
+.card .txt{flex:1;min-width:0}
+.card .nome{font-size:15.5px;font-weight:600;line-height:1.35}
+.card .meta{font-size:12.5px;color:var(--t3);margin-top:3px}
+.card .seta{color:var(--t3);font-size:18px}
+.card.trancada{opacity:.42;cursor:default}
+.card.trancada .ic{color:var(--t3)}
+
+.oferta{
+  background:var(--surf);border:1px solid var(--line2);border-radius:14px;
+  padding:20px;margin-top:6px;font-size:14px;color:var(--t2);line-height:1.6;
+}
+.oferta strong{color:var(--cream)}
+
+/* leitura */
+#texto{padding:24px 0 90px}
+.voltar{font-size:13.5px;color:var(--t3);margin-bottom:22px;display:inline-flex;gap:6px}
+#texto .lab{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;display:block;margin-bottom:10px}
+#texto h2{font-size:26px;font-weight:700;letter-spacing:-.03em;line-height:1.2;margin-bottom:24px}
+#texto h3{
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--t3);
+  font-weight:700;margin:34px 0 14px;padding-top:22px;border-top:1px solid var(--line);
+}
+#texto p{margin-bottom:17px;color:var(--body)}
+#texto strong{color:var(--cream);font-weight:600}
+#texto ul{margin:0 0 17px 20px;color:var(--body)}
+#texto li{margin-bottom:8px}
+.frase{border-left:3px solid var(--gold);background:rgba(217,154,43,.055);border-radius:0 10px 10px 0;padding:18px 20px;margin:24px 0}
+.frase p{margin:0;color:var(--cream);font-weight:600;font-size:19px;line-height:1.35}
+.linha{background:var(--surf);border:1px solid var(--line2);border-radius:10px;padding:14px 16px;margin:12px 0;font-family:ui-monospace,monospace;font-size:14px;color:var(--t2)}
+.nota{background:var(--surf);border:1px solid var(--line2);border-radius:14px;padding:20px;margin:24px 0}
+.nota p:last-child{margin-bottom:0}
+
+/* checklist */
+.chk{
+  display:flex;gap:13px;align-items:flex-start;width:100%;text-align:left;
+  padding:13px 15px;border:1px solid var(--line);border-radius:11px;margin-bottom:8px;
+  background:var(--surf);font-size:15px;line-height:1.45;color:var(--body);
+}
+.chk .box{
+  flex:0 0 20px;height:20px;border-radius:6px;border:1.5px solid var(--line2);
+  margin-top:2px;display:grid;place-items:center;font-size:12px;color:transparent;
+}
+.chk.on{border-color:rgba(74,143,94,.4);background:rgba(74,143,94,.08)}
+.chk.on .box{background:var(--ok);border-color:var(--ok);color:#fff}
+.progresso{font-size:13px;color:var(--t3);margin:18px 0 12px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <svg class="simbolo" viewBox="0 0 40 40" fill="none">
+      <path d="M20 5 A15 15 0 0 1 35 20" stroke="#d99a2b" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M20 11 A9 9 0 0 1 29 20" stroke="#d99a2b" stroke-width="2.4" stroke-linecap="round" opacity=".62"/>
+      <path d="M20 17 A3 3 0 0 1 23 20" stroke="#d99a2b" stroke-width="2.4" stroke-linecap="round" opacity=".34"/>
+      <rect x="18.6" y="24" width="2.8" height="11" rx="1.4" fill="#d99a2b"/>
+    </svg>
+    <span class="marca">Extras</span>
+    <button class="sair oculto" id="btSair">sair</button>
+  </div>
+</header>
+
+<section id="login" class="wrap">
+  <h1>Seus materiais</h1>
+  <p>Digite o e-mail que você usou na compra.</p>
+  <input class="campo" id="email" type="email" inputmode="email" autocomplete="email" placeholder="seu@email.com">
+  <button class="btn" id="btEntrar">Entrar</button>
+  <div class="aviso oculto" id="aviso"></div>
+</section>
+
+<main id="painel" class="wrap oculto">
+  <div class="titulo">Materiais complementares</div>
+  <div class="sub" id="subInfo"></div>
+  <div id="lista"></div>
+</main>
+
+<section id="texto" class="wrap oculto"></section>
+
+<script src="/config.js"></script>
+<script>
+const CFG = window.CEREBRO_RICO || {};
+const App = { email:"", nivel:"", bump:false };
+
+/* ============================================================
+   CONTEÚDO
+   ============================================================ */
+
+const CORTE = [
+{
+ id:"corte-1", titulo:"A conta que ninguém faz", meta:"10 minutos",
+ html:`
+<p>Antes de cortar, você precisa ver o tamanho do que está cortando. Vago não move ninguém. Número move.</p>
+<h3>Faça agora</h3>
+<p><strong>1.</strong> Abra o relatório de tempo de uso do seu celular.</p>
+<ul>
+<li><strong>Android:</strong> Configurações → Bem-estar digital</li>
+<li><strong>iPhone:</strong> Ajustes → Tempo de Uso → Ver toda a atividade</li>
+</ul>
+<p><strong>2.</strong> Anote os 3 aplicativos com maior tempo na última semana.</p>
+<div class="linha">1. ____________  ____ h por dia<br>2. ____________  ____ h por dia<br>3. ____________  ____ h por dia</div>
+<p><strong>3.</strong> Anote quantas vezes você desbloqueia o celular por dia.</p>
+<p><strong>4.</strong> Some as três horas diárias e multiplique por 365. Depois divida por 24.</p>
+<div class="linha">Dias inteiros por ano: ______</div>
+<h3>O que fazer com esse número</h3>
+<p>Guarde. Você vai olhar de novo no dia 21.</p>
+<p>E repare numa coisa antes de seguir: <strong>não é o total que destrói sua execução. É a fragmentação.</strong></p>
+<p>Um dia com quatro horas livres e nenhuma interrupção produz coisas. Um dia com oito horas livres cortadas a cada nove minutos não produz nada — e ainda te deixa exausto.</p>
+<p>O número de desbloqueios diz mais sobre a sua capacidade de executar do que o total de horas.</p>`
+},
+{
+ id:"corte-2", titulo:"O corte do celular", meta:"20 minutos",
+ html:`
+<div class="frase"><p>Pessoas que executam com constância não resistem mais que você. São expostas menos.</p></div>
+<p>Elas não têm mais força de vontade. Organizaram a vida de um jeito em que a decisão difícil não precisa ser tomada, porque a opção fácil foi removida do alcance.</p>
+<p>Força de vontade é um recurso que acaba. Ao meio-dia você já tomou centenas de pequenas decisões. À noite não sobra nada — e é exatamente à noite que você mais falha.</p>
+<p>A saída não é resistir melhor. É reduzir o número de vezes que você precisa resistir.</p>
+<h3>Notificações</h3>
+<p>Desligue <strong>todas</strong>, exceto ligações e mensagens de pessoas reais. Não "silenciado" — desligado.</p>
+<ul>
+<li><strong>Android:</strong> Configurações → Notificações → Notificações de apps</li>
+<li><strong>iPhone:</strong> Ajustes → Notificações → percorra a lista</li>
+</ul>
+<p>Leva uns 10 minutos. É o item de maior retorno desta lista inteira.</p>
+<div class="nota"><p><strong>"E se eu perder algo importante?"</strong></p><p>Nada importante chega por notificação de rede social. O que é urgente chega por ligação. O resto pode esperar você abrir.</p></div>
+<h3>Os três aplicativos</h3>
+<p>Pegue os três que você anotou. Para cada um, na ordem:</p>
+<ul>
+<li><strong>Apague.</strong> Você reinstala se precisar — e a fricção de reinstalar já resolve metade dos casos.</li>
+<li><strong>Se não dá para apagar,</strong> tire da tela inicial. Pasta, última tela.</li>
+<li><strong>Se ainda assim você abre,</strong> use o bloqueio de tempo do próprio sistema. 20 minutos por dia.</li>
+</ul>
+<p>Nunca deixe os três na tela inicial. O gesto de abrir precisa custar alguma coisa.</p>
+<h3>A tela inicial</h3>
+<p>Deixe na primeira tela apenas o que você usa para trabalhar ou resolver a vida. Nada de vermelho, nada que pisque.</p>
+<p>Se sua tela inicial parece um painel de aeroporto, você projetou uma máquina de distração e depois se culpou por se distrair.</p>
+<h3>O celular à noite</h3>
+<p><strong>Carregue o celular fora do quarto.</strong> Se usa como despertador, compre um barato.</p>
+<p>Este é o item que mais gente ignora e o que mais muda o dia seguinte. O celular na mesa de cabeceira causa duas coisas: você dorme mais tarde do que devia, e a primeira coisa que sua cabeça faz ao acordar é reagir em vez de decidir.</p>`
+},
+{
+ id:"corte-3", titulo:"O mapa dos três ladrões", meta:"15 minutos",
+ html:`
+<p>Celular é o ladrão óbvio. Existem outros três, e eles são mais caros porque ninguém os enxerga.</p>
+<h3>Ladrão 1 · Compromisso</h3>
+<p>Uma parte grande do seu tempo não foi roubada. Foi <strong>doada</strong>. Você disse sim.</p>
+<p>Disse sim para o favor, para a reunião que podia ser uma mensagem, para o grupo, para o projeto de outra pessoa. Cada sim pareceu pequeno na hora. Somados, são a razão de você chegar no fim do dia tendo trabalhado muito e não avançado em nada seu.</p>
+<p>O motivo não é generosidade. É que <strong>dizer sim é indolor no presente e caro no futuro</strong>, e nós somos péssimos em sentir o custo do futuro.</p>
+<p><strong>Execute:</strong></p>
+<ul>
+<li>Ache 1 compromisso desta semana que você aceitou e não queria. Cancele hoje, sem justificativa elaborada: <em>"não vou conseguir, desculpa avisar em cima."</em> Explicação convida negociação.</li>
+<li>Saia de 2 grupos de mensagem que só consomem atenção.</li>
+<li>Regra permanente: nenhum compromisso novo é aceito na hora em que é pedido. Resposta padrão: <em>"me deixa ver e te confirmo."</em></li>
+</ul>
+<h3>Ladrão 2 · Decisão</h3>
+<p>Você acorda e decide o que vestir, o que comer, se vai hoje ou amanhã, por onde começar. Nenhuma dessas decisões importa, e todas cobram o mesmo pedaço de energia que você precisaria para a que importa.</p>
+<p>Pessoas que produzem muito têm uma característica que quase ninguém repara: <strong>a vida delas é entediante nos detalhes.</strong> Não é falta de imaginação. É economia.</p>
+<p><strong>Execute:</strong></p>
+<ul>
+<li>Horário fixo de acordar pelos próximos 21 dias, inclusive fim de semana</li>
+<li>Café da manhã congelado — o mesmo todos os dias</li>
+<li>Roupa separada na noite anterior</li>
+<li>Um lugar fixo para executar sua tarefa principal</li>
+</ul>
+<h3>Ladrão 3 · Informação</h3>
+<p>Existe uma forma de procrastinação que se disfarça muito bem: a que parece estudo.</p>
+<p>Você assiste o vídeo, salva o artigo, ouve o podcast, entra no grupo. E sente progresso real — porque seu cérebro registra "aprendi algo hoje" quase igual a "fiz algo hoje".</p>
+<p>Só que não fez. E o pior: essa sensação <strong>alivia justamente a pressão que faria você agir</strong>.</p>
+<p><strong>Execute:</strong></p>
+<ul>
+<li>Suspenda todo conteúdo novo sobre produtividade e disciplina até o dia 21</li>
+<li>Silencie 3 perfis que só dão sensação de progresso</li>
+<li>Apague da lista de "ler depois" tudo com mais de 30 dias</li>
+</ul>`
+},
+{
+ id:"corte-4", titulo:"Checklist final", meta:"marque só o que fez", checklist:true,
+ itens:[
+  "Anotei os 3 aplicativos e as horas",
+  "Calculei as horas por ano e guardei o número",
+  "Notificações desligadas, exceto ligações e mensagens",
+  "Os 3 aplicativos apagados ou fora da tela inicial",
+  "Tela inicial limpa",
+  "Celular dorme fora do quarto",
+  "Cancelei 1 compromisso",
+  "Saí de 2 grupos",
+  "Adotei a regra de não aceitar na hora",
+  "Horário de acordar definido",
+  "Café da manhã congelado",
+  "Roupa separada na noite anterior",
+  "Lugar fixo escolhido",
+  "Suspendi conteúdo novo até o dia 21",
+  "Silenciei 3 canais",
+  "Limpei a lista de ler depois"
+ ],
+ fim:`
+<h3>O que esperar amanhã</h3>
+<p>Provavelmente incômodo.</p>
+<p>Muita gente descobre nesta primeira noite que o barulho tinha uma função — ele impedia de perceber o quanto o dia estava vazio de coisas que importam.</p>
+<p><strong>Esse desconforto é o sinal de que funcionou.</strong> Você não estava sem tempo. Estava com o tempo ocupado por coisas que não escolheu.</p>
+<p>Agora tem espaço. O protocolo de 21 dias começa a preencher ele — com uma coisa só, e menor do que você imagina.</p>`
+}
+];
+
+const FERRAMENTAS = [
+{
+ id:"f1", titulo:"Os dez primeiros minutos", quando:"o dia começa te comandando",
+ html:`
+<p>A primeira coisa que a maioria faz ao acordar é pegar o celular. E aí o dia começa com você respondendo — a uma mensagem, a uma notícia, a um vídeo. A partir daí, é difícil sair do modo de reagir.</p>
+<p>Não é falta de disciplina. É que o aparelho está a trinta centímetros da sua cabeça e foi desenhado para ser a coisa mais fácil de fazer nesse momento.</p>
+<h3>Os três passos</h3>
+<p><strong>1 · Levante antes de negociar.</strong> Quando o alarme tocar, pés no chão antes de pensar. Quanto mais tempo deitado, mais argumentos aparecem — e eles sempre ganham. Não é força: é não dar tempo para a negociação começar.</p>
+<p><strong>2 · Movimente o corpo por dois minutos.</strong> Água e algum movimento: escada, caminhada pela casa, alongamento. Não é treino — é sair da posição horizontal antes de a cabeça engatar. Se você tem alguma limitação física, adapte.</p>
+<p><strong>3 · Escreva uma frase.</strong> Num papel, à mão: o que você vai concluir hoje. <strong>Uma coisa.</strong> Escrever à mão é mais lento que digitar, e é por isso que funciona — a lentidão obriga a escolher.</p>
+<div class="nota"><p><strong>A regra que sustenta as três:</strong> o celular só depois. Se abrir antes, os dez minutos não acontecem — você vai olhar "rapidinho" e são vinte.</p></div>`
+},
+{
+ id:"f2", titulo:"A lista de três", quando:"a lista é grande demais",
+ html:`
+<p>Uma lista de quinze tarefas não organiza nada. Ela documenta o quanto você está atrasado.</p>
+<p>E tem um efeito colateral previsível: diante de uma lista grande, você começa pelas fáceis. Isso dá sensação de progresso, o dia passa, e as duas ou três que mudariam alguma coisa continuam lá.</p>
+<h3>Como fazer</h3>
+<p><strong>Três tarefas. Só três.</strong> A pergunta que define quais: <em>se eu só pudesse terminar três coisas hoje, quais fariam diferença amanhã?</em></p>
+<p><strong>A primeira é a única que conta.</strong> As outras duas são bônus. Antes de ter avançado de verdade na primeira, você não abre e-mail e não responde mensagem. "Avançado de verdade" quer dizer pelo menos 25 minutos nela — não precisa terminar.</p>
+<p><strong>A lista não cresce.</strong> Se algo urgente aparecer, ele substitui uma das três. Nunca soma. O limite é o que faz funcionar.</p>
+<div class="nota"><p><strong>O erro mais comum:</strong> colocar na lista o que você já ia fazer mesmo. A lista de três é para o que você vem evitando.</p></div>`
+},
+{
+ id:"f3", titulo:"O bloco de 25 minutos", quando:"o foco não segura",
+ html:`
+<p>Ninguém mantém foco por três horas seguidas. A cabeça funciona em ciclos de esforço e recuperação — e quando você força a linha reta, ela desvia sozinha, geralmente para o celular.</p>
+<p>Vinte e cinco minutos é curto o bastante para você aguentar e longo o bastante para render.</p>
+<h3>Como fazer</h3>
+<p><strong>Antes (2 min).</strong> Feche o que não é da tarefa. Celular em outro cômodo — não virado para baixo na mesa, em outro cômodo. Escreva no papel a tarefa exata. Cronômetro em 25.</p>
+<p><strong>Durante (25 min).</strong> Só aquilo. Se a cabeça for embora — e vai — anote o pensamento num papel separado e volte. Anotar resolve, porque o incômodo geralmente é o medo de esquecer.</p>
+<p><strong>Depois (5 min).</strong> Levante. Ande. Não olhe para tela. Pular a pausa piora o bloco seguinte, e o terceiro vira teatro.</p>
+<p>No começo, no máximo quatro blocos por dia. Cinco numa terça e zero na quarta rende menos que três nos dois dias.</p>`
+},
+{
+ id:"f4", titulo:"Os dois primeiros minutos", quando:"você trava antes de começar",
+ html:`
+<p>A parte difícil quase nunca é a tarefa. É o começo.</p>
+<p>Repare no seu padrão: você vai fazer, e antes arruma a mesa, olha uma mensagem, faz um café. Nenhuma dessas coisas é preguiça — todas são fuga do desconforto dos primeiros minutos.</p>
+<div class="frase"><p>Depois que você começa, o desconforto some. Ele só existe antes.</p></div>
+<h3>Como fazer</h3>
+<p><strong>1 · Diga em voz alta que está travando.</strong> Literalmente: <em>"estou travando nisso."</em> Falar interrompe o automático. Enquanto não tem nome, você acha que está ocupado.</p>
+<p><strong>2 · Combine dois minutos, não a tarefa.</strong> <em>"Só vou começar. Dois minutos."</em> Abra o documento. Escreva uma linha. O objetivo não é terminar — e é honesto: se depois de dois minutos você parar, tudo bem. Quase nunca para.</p>
+<p>Isso funciona por uma característica conhecida da memória: <strong>tarefa começada e não terminada continua ocupando espaço na cabeça.</strong> Antes de começar, é fácil ignorar. Depois de começar, incomoda até terminar.</p>
+<p><strong>3 · Crie um gesto de abertura.</strong> O mesmo sempre: o mesmo fone, a mesma cadeira, o mesmo café. Repetido, vira aviso. Só funciona se for igual toda vez.</p>`
+},
+{
+ id:"f5", titulo:"As três perguntas da noite", quando:"a sensação de dia perdido",
+ html:`
+<p>Essa sensação quase nunca é medida contra fatos. Ela vem do que ficou pendente, porque pendência é o que fica visível. O que você concluiu some da cabeça no mesmo dia.</p>
+<p>Cinco minutos, papel, antes de dormir.</p>
+<h3>As perguntas</h3>
+<p><strong>1 · O que eu concluí hoje?</strong> Uma a três coisas que você <strong>fez</strong>, não que planejou. Coisas pequenas contam. O ponto é olhar para o dia com o que aconteceu, não com o que faltou.</p>
+<p><strong>2 · O que ficou, e o que exatamente atrapalhou?</strong> Sem julgamento — registro. E o motivo real, específico. Não "não tive tempo", mas "a reunião das 15h comeu o bloco da tarde".</p>
+<p>Em duas semanas você começa a ver o mesmo motivo repetido. Aí ele deixa de ser azar e vira uma coisa concreta que dá para mudar.</p>
+<p><strong>3 · Qual é a primeira coisa de amanhã?</strong> Escreva agora. Isso poupa a decisão de amanhã de manhã, que é quando você tem menos energia para decidir.</p>
+<p>Depois disso, o celular sai do quarto.</p>`
+},
+{
+ id:"f6", titulo:"O retorno", quando:"você sumiu",
+ html:`
+<p>Você já sabe a regra do protocolo: <strong>nunca dois dias seguidos.</strong> Um dia perdido é um acidente. Dois já começam a virar outra coisa.</p>
+<p>Esta ferramenta é para depois — quando já passou de dois e você está há dias, ou semanas, sem tocar no assunto.</p>
+<p>O que trava o retorno não é preguiça. É a ideia de que você precisa <strong>recomeçar</strong> — e recomeçar parece grande, então você adia. E cada dia adiado deixa a ideia maior.</p>
+<h3>O protocolo</h3>
+<p><strong>1 · Você não recomeça. Você continua.</strong> O app não zerou nada. Seu progresso está exatamente onde parou.</p>
+<p><strong>2 · Volte na versão mínima.</strong> Nos primeiros três dias, a versão de dois minutos, mesmo se sentindo bem. Não é para poupar você — é para o retorno acontecer.</p>
+<p><strong>3 · Não compense nada.</strong> Compensar é a forma mais rápida de sumir de novo, porque é grande demais e você não faz.</p>
+<p><strong>4 · Escreva o que causou.</strong> Uma linha. Não é para se cobrar — é para reconhecer o padrão da próxima vez, antes.</p>`
+},
+{
+ id:"f7", titulo:"A revisão de domingo", quando:"as semanas passam sem leitura",
+ html:`
+<p>Sem revisão, você julga o mês inteiro pelo que sentiu na sexta à noite. É por isso que tanta gente abandona algo que estava funcionando.</p>
+<p>Vinte minutos, uma vez por semana.</p>
+<h3>Parte 1 — Conte (10 min)</h3>
+<ul>
+<li>Quantos dias eu executei nesta semana?</li>
+<li>Qual foi a maior coisa que saiu?</li>
+<li>Qual foi o dia em que falhei, e o que estava acontecendo nele?</li>
+<li>Tem um dia da semana que concentra as falhas?</li>
+</ul>
+<p><strong>Não pule a pergunta da falha.</strong> É a única que produz informação nova. As outras confirmam o que você já sente.</p>
+<h3>Parte 2 — Quem você está virando (5 min)</h3>
+<p>Uma frase, no presente, começando com o que você <strong>faz</strong> — nunca com o que você quer.</p>
+<div class="linha">Sou alguém que executa antes de decidir se está com vontade.</div>
+<p>Não é afirmação positiva nem autoengano. É descrição: se você executou quatro dos últimos sete, isso é verdade sobre você. A frase só nomeia.</p>
+<h3>Parte 3 — Três resultados da semana (5 min)</h3>
+<p>Não tarefas — <strong>resultados</strong>. O que precisa estar diferente no próximo domingo. Com isso definido, a lista de três de cada dia tem para onde apontar.</p>`
+}
+];
+
+/* ============================================================
+   API
+   ============================================================ */
+const API = {
+  endereco(){ return String(CFG.SUPABASE_URL||"").replace(/\/+$/,"") + "/functions/v1/acesso"; },
+  cabecalhos(){
+    const h={"content-type":"application/json"}; const k=CFG.SUPABASE_ANON_KEY;
+    if(k){h["apikey"]=k;h["Authorization"]="Bearer "+k;} return h;
+  },
+  async chama(acao,dados){
+    const r=await fetch(this.endereco(),{method:"POST",headers:this.cabecalhos(),
+      body:JSON.stringify({acao,...dados})});
+    return r.json();
+  }
+};
+
+const $ = id => document.getElementById(id);
+const chave = () => "crx:"+App.email;
+function marcados(){ try{return JSON.parse(localStorage.getItem(chave())||"[]")}catch{return[]} }
+function alterna(k){
+  const m=marcados(); const i=m.indexOf(k);
+  if(i>=0)m.splice(i,1); else m.push(k);
+  localStorage.setItem(chave(),JSON.stringify(m)); return m.includes(k);
+}
+
+function mostra(qual){
+  ["login","painel","texto"].forEach(t=>$(t).classList.toggle("oculto",t!==qual));
+  $("btSair").classList.toggle("oculto",qual==="login");
+  window.scrollTo(0,0);
+}
+function erro(msg){ const a=$("aviso"); a.innerHTML=msg; a.classList.remove("oculto"); }
+
+async function entrar(){
+  const email=$("email").value.trim().toLowerCase();
+  if(!email.includes("@")) return erro("Digite um e-mail válido.");
+  $("btEntrar").disabled=true; $("btEntrar").textContent="Verificando…";
+  $("aviso").classList.add("oculto");
+  let r; try{ r=await API.chama("entrar",{email}); }catch{ r=null; }
+  $("btEntrar").disabled=false; $("btEntrar").textContent="Entrar";
+
+  if(!r) return erro("Não consegui verificar seu acesso agora. Tente de novo em instantes.");
+  if(!r.ok){
+    if(r.motivo==="sem_compra")
+      return erro("Não encontrei uma compra com esse e-mail.<br><br>Confira se digitou o mesmo e-mail usado no pagamento.");
+    return erro("Não consegui liberar o acesso. Fale com o suporte.");
+  }
+
+  App.email=email; App.nivel=r.nivel||""; App.bump=!!r.bump;
+  localStorage.setItem("crx:email",email);
+  desenha(); mostra("painel");
+}
+
+function desenha(){
+  $("subInfo").textContent = App.bump
+    ? "Caixa de Ferramentas e Corte de Ruído liberados."
+    : "Caixa de Ferramentas liberada.";
+
+  let h = `<div class="grupo"><span>Incluído no protocolo</span><i></i></div>
+           <div class="grupo-desc">Sete ferramentas. Use uma quando o problema aparecer.</div>`;
+
+  FERRAMENTAS.forEach((f,i)=>{
+    h += `<button class="card" data-f="${f.id}">
+      <span class="ic">${i+1}</span>
+      <span class="txt"><span class="nome">${f.titulo}</span>
+      <span class="meta">quando ${f.quando}</span></span>
+      <span class="seta">›</span></button>`;
+  });
+
+  h += `<div class="grupo"><span>Corte de Ruído</span><i></i></div>
+        <div class="grupo-desc">A primeira fase do protocolo, executada numa tarde.</div>`;
+
+  if (App.bump){
+    const m = marcados();
+    CORTE.forEach((c,i)=>{
+      h += `<button class="card" data-c="${c.id}">
+        <span class="ic">${i+1}</span>
+        <span class="txt"><span class="nome">${c.titulo}</span>
+        <span class="meta">${c.meta}</span></span>
+        <span class="seta">›</span></button>`;
+    });
+  } else {
+    CORTE.forEach((c,i)=>{
+      h += `<div class="card trancada">
+        <span class="ic">${i+1}</span>
+        <span class="txt"><span class="nome">${c.titulo}</span>
+        <span class="meta">${c.meta}</span></span>
+        <span class="seta">·</span></div>`;
+    });
+    h += `<div class="oferta">
+      O <strong>Corte de Ruído</strong> não está incluído no seu acesso. Ele é o material que limpa o ambiente antes do dia 1 — a conta das horas, a reconfiguração do celular e o mapa dos três ladrões invisíveis.
+      <br><br>Se quiser adicionar, escreva para o suporte.
+    </div>`;
+  }
+
+  $("lista").innerHTML=h;
+  $("lista").querySelectorAll("[data-f]").forEach(b=>
+    b.onclick=()=>abre(FERRAMENTAS.find(x=>x.id===b.dataset.f),"Caixa de Ferramentas"));
+  $("lista").querySelectorAll("[data-c]").forEach(b=>
+    b.onclick=()=>abre(CORTE.find(x=>x.id===b.dataset.c),"Corte de Ruído"));
+}
+
+function abre(item, grupo){
+  if(!item) return;
+  let corpo = item.html || "";
+
+  if (item.checklist){
+    const m = marcados();
+    corpo = `<div class="progresso" id="prog"></div>` +
+      item.itens.map((t,i)=>{
+        const k = item.id+":"+i;
+        return `<button class="chk ${m.includes(k)?"on":""}" data-k="${k}">
+          <span class="box">✓</span><span>${t}</span></button>`;
+      }).join("") + (item.fim||"");
+  }
+
+  $("texto").innerHTML = `
+    <button class="voltar" id="btVoltar">‹ voltar</button>
+    <span class="lab">${grupo}</span>
+    <h2>${item.titulo}</h2>
+    ${corpo}`;
+
+  $("btVoltar").onclick=()=>{ desenha(); mostra("painel"); };
+
+  if (item.checklist){
+    const atualiza=()=>{
+      const m=marcados();
+      const n=item.itens.filter((_,i)=>m.includes(item.id+":"+i)).length;
+      $("prog").textContent = `${n} de ${item.itens.length} concluídos`;
+    };
+    $("texto").querySelectorAll("[data-k]").forEach(b=>{
+      b.onclick=()=>{ b.classList.toggle("on",alterna(b.dataset.k)); atualiza(); };
+    });
+    atualiza();
+  }
+  mostra("texto");
+}
+
+$("btEntrar").onclick=entrar;
+$("email").addEventListener("keydown",e=>{ if(e.key==="Enter") entrar(); });
+$("btSair").onclick=()=>{ localStorage.removeItem("crx:email"); App.email=""; $("email").value=""; mostra("login"); };
+
+const salvo=localStorage.getItem("crx:email");
+if(salvo){ $("email").value=salvo; entrar(); }
+</script>
+</body>
+</html>
