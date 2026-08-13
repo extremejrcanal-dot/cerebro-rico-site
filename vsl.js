@@ -59,7 +59,7 @@
 
   /* ---------- 2. o CTA atrasado ---------- */
   function alvos() {
-    return document.querySelectorAll(".cta, .cta-sub, .barra");
+    return document.querySelectorAll(".cta-vsl, .cta-vsl-sub");
   }
   function esconder() {
     var e = alvos();
