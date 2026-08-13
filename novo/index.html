@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="facebook-domain-verification" content="vs8fiao7n0w4awnmpvqhxjo0686oly" />
+<script src="/vsl.js" defer></script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cérebro Rico — O Ciclo do Comando</title>
+<script src="/pixel.js"></script>
+<meta name="description" content="Protocolo de 21 dias para retomar o comando da sua rotina. Um dia por vez, dentro de um aplicativo. Com um plano escrito para o dia em que você falhar.">
+<meta property="og:title" content="Você não desistiu por falta de motivação.">
+<meta property="og:description" content="Desistiu porque ninguém te deu um plano para o dia seguinte àquele em que você falhou.">
+<meta name="theme-color" content="#0a0a0c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================
+   CÉREBRO RICO — PÁGINA DE VENDAS
+   Sistema de design
+   ========================================================== */
+:root{
+  --dark:#0a0a0c; --surf:#131317; --surf2:#1a1a20; --surf3:#212129;
+  --line:rgba(255,255,255,.07); --line2:rgba(255,255,255,.11);
+  --gold:#d99a2b; --gold-l:#e8b95a; --gold-d:#8a6218;
+  --t1:#eaeaef; --t2:rgba(255,255,255,.66); --t3:rgba(255,255,255,.40);
+  --alert:#c4622d;
+  --glow:0 0 60px -12px rgba(217,154,43,.55);
+  --sec:clamp(72px,11vw,124px);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--dark); color:var(--t1);
+  font-family:Inter,system-ui,-apple-system,sans-serif;
+  font-size:17px; line-height:1.7; letter-spacing:-.011em;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+
+/* ---------- fundo ---------- */
+.bg-fixo{
+  position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:
+    radial-gradient(900px 620px at 50% -8%, rgba(217,154,43,.15), transparent 62%),
+    radial-gradient(700px 500px at 88% 42%, rgba(217,154,43,.05), transparent 60%),
+    var(--dark);
+}
+.grain{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.032;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- layout ---------- */
+.wrap{width:100%;max-width:664px;margin:0 auto;padding:0 22px}
+.wrap-n{max-width:576px}
+.wrap-w{max-width:920px}
+section{padding:var(--sec) 0;position:relative}
+.hr{height:1px;background:linear-gradient(90deg,transparent,var(--line2),transparent);border:0;margin:0}
+
+/* ---------- tipografia ---------- */
+.rotulo{
+  display:inline-block;font-size:11px;font-weight:700;letter-spacing:.19em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:20px;
+}
+.rotulo-n{color:var(--t3)}
+h1{font-size:clamp(31px,7.4vw,54px);font-weight:800;line-height:1.08;letter-spacing:-.035em}
+h2{font-size:clamp(26px,5.6vw,40px);font-weight:700;line-height:1.16;letter-spacing:-.028em}
+h3{font-size:clamp(19px,3.4vw,23px);font-weight:700;line-height:1.3;letter-spacing:-.02em}
+p{color:var(--t2);margin-bottom:19px}
+p:last-child{margin-bottom:0}
+.lead{font-size:clamp(18px,3.4vw,20px);line-height:1.62;color:var(--t2)}
+.sub2{color:var(--t3);font-size:15px}
+strong,b{color:var(--t1);font-weight:600}
+.gold{color:var(--gold)}
+.h2-sub{margin-top:16px}
+
+/* frase de impacto */
+.impacto{
+  font-size:clamp(20px,4.3vw,28px);font-weight:700;line-height:1.34;
+  letter-spacing:-.025em;color:var(--t1);
+  padding:26px 0 26px 22px;border-left:2px solid var(--gold);
+  margin:34px 0;
+}
+.impacto.centro{border:0;padding:0;text-align:center;margin:40px 0}
+
+/* ---------- botões ---------- */
+.cta,.cta-vsl{
+  display:block;width:100%;max-width:430px;margin:0 auto;
+  background:linear-gradient(180deg,var(--gold-l),var(--gold));
+  color:#140d02;text-decoration:none;text-align:center;
+  font-size:clamp(15px,3.1vw,17px);font-weight:800;letter-spacing:.035em;
+  padding:21px 20px;border-radius:13px;
+  box-shadow:0 10px 34px -12px rgba(217,154,43,.7), inset 0 1px 0 rgba(255,255,255,.35);
+  transition:transform .16s ease, box-shadow .16s ease;
+  position:relative;overflow:hidden;
+}
+.cta:active,.cta-vsl:active{transform:scale(.985)}
+@media(hover:hover){
+  .cta:hover,.cta-vsl:hover{transform:translateY(-2px);box-shadow:0 16px 44px -12px rgba(217,154,43,.8), inset 0 1px 0 rgba(255,255,255,.35)}
+}
+.cta-sub,.cta-vsl-sub{
+  display:block;text-align:center;color:var(--t3);font-size:13.5px;
+  margin-top:14px;letter-spacing:.005em;
+}
+.cta-sub b{color:var(--t2);font-weight:600}
+
+/* barra fixa */
+.barra{
+  position:fixed;left:0;right:0;bottom:0;z-index:60;
+  background:rgba(10,10,12,.93);backdrop-filter:blur(14px);
+  border-top:1px solid var(--line2);padding:11px 16px calc(11px + env(safe-area-inset-bottom));
+  transform:translateY(110%);transition:transform .32s cubic-bezier(.2,.8,.2,1);
+}
+.barra.ver{transform:translateY(0)}
+.barra a{
+  display:block;max-width:430px;margin:0 auto;
+  background:linear-gradient(180deg,var(--gold-l),var(--gold));color:#140d02;
+  text-decoration:none;text-align:center;font-weight:800;font-size:14.5px;
+  letter-spacing:.03em;padding:15px;border-radius:11px;
+}
+@media(min-width:820px){.barra{display:none}}
+
+/* ---------- selos de confiança ---------- */
+.selos{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:26px;
+}
+.selo{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:12px;color:var(--t3);letter-spacing:.01em;
+  background:rgba(255,255,255,.035);border:1px solid var(--line);
+  padding:8px 13px;border-radius:99px;
+}
+.selo svg{width:13px;height:13px;flex:none;stroke:var(--gold);fill:none;stroke-width:2.4}
+
+/* ---------- cartões ---------- */
+.card{
+  background:var(--surf);border:1px solid var(--line);border-radius:17px;
+  padding:clamp(22px,4vw,30px);
+}
+.card+.card{margin-top:14px}
+
+/* ---------- os 21 pontos ---------- */
+.pontos{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:22px 0}
+.pt{
+  width:22px;height:22px;border-radius:6px;background:rgba(255,255,255,.055);
+  border:1px solid var(--line);display:grid;place-items:center;
+  font-size:9.5px;font-weight:700;color:rgba(255,255,255,.22);
+  transition:all .3s ease;
+}
+.pt.ok{background:var(--gold);border-color:var(--gold);color:#140d02}
+.pt.falhou{background:rgba(196,98,45,.16);border-color:rgba(196,98,45,.55);color:#e08a52}
+.pt.hoje{border-color:var(--gold);color:var(--gold);box-shadow:0 0 0 3px rgba(217,154,43,.13)}
+
+/* ---------- comparação ---------- */
+.duo{display:grid;gap:13px}
+@media(min-width:640px){.duo{grid-template-columns:1fr 1fr}}
+.duo-t{
+  font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--t3);margin-bottom:16px;
+}
+.duo .card.mau{border-color:rgba(196,98,45,.28)}
+.duo .card.bom{border-color:rgba(217,154,43,.32);background:linear-gradient(180deg,rgba(217,154,43,.055),transparent)}
+.duo .card.bom .duo-t{color:var(--gold)}
+.lista{list-style:none}
+.lista li{
+  position:relative;padding-left:19px;margin-bottom:11px;
+  color:var(--t2);font-size:15.5px;line-height:1.55;
+}
+.lista li:last-child{margin-bottom:0}
+.lista li::before{
+  content:"";position:absolute;left:0;top:9px;width:6px;height:6px;
+  border-radius:50%;background:var(--t3);
+}
+.lista.g li::before{background:var(--gold)}
+.lista.r li::before{background:var(--alert)}
+
+/* ---------- fases ---------- */
+.fase{position:relative;padding:30px 0;border-top:1px solid var(--line)}
+.fase:first-of-type{border-top:0}
+.fase-n{
+  position:absolute;right:-4px;top:14px;font-size:clamp(64px,15vw,104px);
+  font-weight:800;line-height:1;color:rgba(255,255,255,.028);
+  letter-spacing:-.06em;pointer-events:none;
+}
+.fase-t{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.fase-t h3{margin:0}
+.fase-d{
+  font-size:10.5px;font-weight:700;letter-spacing:.14em;color:var(--gold);
+  background:rgba(217,154,43,.1);border:1px solid rgba(217,154,43,.24);
+  padding:4px 9px;border-radius:6px;white-space:nowrap;
+}
+.fase p{position:relative;z-index:1;font-size:16px}
+
+/* ---------- entregáveis ---------- */
+.item{display:flex;gap:16px;padding:19px 0;border-top:1px solid var(--line)}
+.item:first-child{border-top:0}
+.item-n{
+  flex:none;width:29px;height:29px;border-radius:8px;
+  background:rgba(217,154,43,.11);border:1px solid rgba(217,154,43,.26);
+  display:grid;place-items:center;font-size:12.5px;font-weight:800;color:var(--gold);
+}
+.item h3{font-size:17px;margin-bottom:5px}
+.item p{font-size:15px;margin:0;line-height:1.6}
+
+/* ---------- preço ---------- */
+.preco-caixa{
+  text-align:center;background:linear-gradient(180deg,rgba(217,154,43,.08),transparent 70%);
+  border:1px solid rgba(217,154,43,.24);border-radius:20px;
+  padding:clamp(30px,6vw,44px) clamp(20px,4vw,32px);
+}
+.preco-de{color:var(--t3);font-size:14px;margin-bottom:10px}
+.preco{
+  font-size:clamp(50px,13vw,78px);font-weight:800;line-height:1;
+  letter-spacing:-.05em;color:var(--t1);
+  background:linear-gradient(180deg,#fff,var(--gold-l));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.preco-sub{color:var(--t3);font-size:14.5px;margin:14px 0 28px}
+
+/* ---------- garantia ---------- */
+.gar{text-align:center}
+.selo-g{width:112px;height:112px;margin:0 auto 24px;display:block;filter:drop-shadow(0 6px 26px rgba(217,154,43,.3))}
+
+/* ---------- FAQ ---------- */
+details{border-bottom:1px solid var(--line)}
+details summary{
+  list-style:none;cursor:pointer;padding:19px 34px 19px 0;position:relative;
+  font-weight:600;font-size:16.5px;color:var(--t1);letter-spacing:-.015em;
+}
+details summary::-webkit-details-marker{display:none}
+details summary::after{
+  content:"";position:absolute;right:6px;top:50%;width:11px;height:11px;
+  border-right:2px solid var(--t3);border-bottom:2px solid var(--t3);
+  transform:translateY(-70%) rotate(45deg);transition:transform .22s ease;
+}
+details[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+details .resp{padding:0 8px 22px 0;color:var(--t2);font-size:15.5px;line-height:1.7}
+
+/* ---------- fundador ---------- */
+.autor{display:flex;gap:18px;align-items:center;margin-bottom:28px}
+.autor-foto{
+  flex:none;width:74px;height:74px;border-radius:50%;object-fit:cover;
+  border:2px solid rgba(217,154,43,.4);background:var(--surf2);
+}
+.autor-nome{font-weight:700;font-size:17px;color:var(--t1)}
+.autor-cargo{font-size:13.5px;color:var(--t3);margin-top:3px}
+
+/* ---------- mockups ---------- */
+.telas{display:grid;gap:14px;margin-top:8px}
+@media(min-width:700px){.telas{grid-template-columns:repeat(3,1fr)}}
+.tela{
+  background:var(--surf);border:1px solid var(--line);border-radius:20px;
+  padding:16px 14px;overflow:hidden;
+}
+.tela-topo{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:9.5px;font-weight:700;letter-spacing:.12em;color:var(--t3);
+  text-transform:uppercase;margin-bottom:14px;
+}
+.tela-legenda{
+  margin-top:14px;font-size:12.5px;color:var(--t3);text-align:center;line-height:1.5;
+}
+.tela .pontos{gap:4px;margin:0}
+.tela .pt{width:15px;height:15px;font-size:0;border-radius:4px}
+.tela-titulo{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:6px}
+.tela-txt{font-size:13px;color:var(--t2);line-height:1.55}
+
+/* ---------- vsl ---------- */
+.vsl-caixa{margin:26px auto 0}
+.vsl-espaco{
+  aspect-ratio:16/9;display:grid;place-items:center;background:#141417;
+  border:1px solid var(--line);border-radius:14px;color:var(--t3);
+  font-size:14px;text-align:center;padding:24px;
+}
+
+/* ---------- animação ---------- */
+.an{opacity:0;transform:translateY(22px)}
+.an.go{animation:sobe .85s cubic-bezier(.16,1,.3,1) both}
+@keyframes sobe{to{opacity:1;transform:none}}
+.d1{animation-delay:.07s}.d2{animation-delay:.14s}.d3{animation-delay:.21s}
+.d4{animation-delay:.28s}.d5{animation-delay:.35s}
+@media(prefers-reduced-motion:reduce){
+  .an,.an.go{animation:none!important;opacity:1!important;transform:none!important}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- rodapé ---------- */
+.rodape{
+  padding:52px 0 130px;text-align:center;color:var(--t3);
+  font-size:13px;line-height:1.85;
+}
+@media(min-width:820px){.rodape{padding-bottom:64px}}
+.rodape a{color:var(--t2);text-decoration:underline;text-underline-offset:3px}
+a{color:inherit}
+</style>
+</head>
+<body>
+<div class="bg-fixo"></div><div class="grain"></div>
+
+<!-- ============================================================
+     1 · HERO
+     ============================================================ -->
+<section style="padding-top:clamp(52px,10vw,86px)">
+  <div class="wrap">
+    <div class="an d1" style="text-align:center">
+      <span class="rotulo">O Ciclo do Comando · Protocolo de 21 dias</span>
+    </div>
+    <h1 class="an d2" style="text-align:center">Você não desistiu por falta de motivação.</h1>
+    <p class="lead an d3" style="text-align:center;margin-top:22px">
+      Desistiu porque ninguém nunca te deu um plano para o dia seguinte àquele em que você falhou.
+    </p>
+
+    <div class="an d4" style="margin-top:34px">
+      <a class="cta" href="https://pay.kirvano.com/0191985a-c6d1-4c8b-835b-23cbb6b87592">QUERO COMEÇAR O DIA 1</a>
+      <span class="cta-sub"><b>R$47</b> · pagamento único · 7 dias de garantia</span>
+    </div>
+
+    <div class="selos an d5">
+      <span class="selo"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Acesso imediato</span>
+      <span class="selo"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Sem mensalidade</span>
+      <span class="selo"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Devolução em 7 dias</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     2 · VSL
+     ============================================================ -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="an" style="text-align:center">
+      <span class="rotulo rotulo-n">Assista</span>
+      <h2>Em 8 minutos você entende por que isso sempre acontece de novo.</h2>
+    </div>
+
+    <div class="vsl-caixa an">
+      <!-- o vsl.js troca este bloco pelo player do VTurb -->
+      <div class="vsl-espaco">Vídeo em breve</div>
+    </div>
+
+    <p class="sub2 an" style="text-align:center;margin-top:14px">Assista com som.</p>
+
+    <div class="an" style="margin-top:30px">
+      <a class="cta-vsl" href="https://pay.kirvano.com/0191985a-c6d1-4c8b-835b-23cbb6b87592">QUERO COMEÇAR O DIA 1</a>
+      <span class="cta-vsl-sub">R$47 · pagamento único · 7 dias de garantia</span>
+    </div>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- ============================================================
+     3 · A CENA
+     ============================================================ -->
+<section>
+  <div class="wrap">
+    <div class="an"><span class="rotulo">Parte 1 · O diagnóstico</span></div>
+    <h2 class="an">Eu sei em que dia você parou.</h2>
+
+    <div class="an" style="margin-top:26px">
+      <p><strong>Não foi no primeiro.</strong> Foi no dia seguinte ao primeiro que você falhou.</p>
+      <p>Começa sempre igual. Você decide que dessa vez vai. Compra o curso, faz a lista, acorda cedo. Dia um perfeito. Dia dois perfeito. Dia três cansado, mas faz.</p>
+      <p>No dia quatro aconteceu alguma coisa. Dormiu mal, o trabalho apertou, a vida atravessou. E você não fez.</p>
+    </div>
+
+    <div class="pontos an" id="pontos-cena" aria-hidden="true"></div>
+
+    <div class="an">
+      <p>E aí, no dia cinco, não é o cansaço que te impede. É a conta que você faz na cabeça: <em style="color:var(--t1)">já estraguei</em>.</p>
+      <p>Uma semana depois, sumiu. E fica aquela frase que você não fala para ninguém.</p>
+    </div>
+
+    <div class="impacto centro an">“De novo eu.”</div>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- ============================================================
+     4 · O CUSTO
+     ============================================================ -->
+<section>
+  <div class="wrap">
+    <div class="an"><span class="rotulo">O que isso já custou</span></div>
+    <h2 class="an">Existe uma moeda que você vem gastando sem perceber.</h2>
+
+    <div class="an" style="margin-top:26px">
+      <p>Pense naquela coisa que você adia há mais tempo. Não a lista inteira — uma. A que apareceu na sua cabeça agora.</p>
+      <p>Há quanto tempo ela está aí? Seis meses? Dois anos? Cinco?</p>
+      <p>Essa distância entre você e a pessoa que teria feito não é falta de tempo, porque tempo você teve. E não é falta de capacidade, porque você já fez coisas difíceis antes.</p>
+      <p>A parte mais cara não é nem o que você deixou de conquistar. É outra coisa, mais silenciosa.</p>
+    </div>
+
+    <div class="impacto an">
+      Toda vez que você prometeu e não cumpriu, você perdeu um pouco da confiança na sua própria palavra.
+    </div>
+
+    <div class="an">
+      <p>E hoje, quando você diz para si mesmo que vai fazer algo, uma parte de você já não acredita.</p>
+      <p><strong>Você percebeu isso. Só nunca falou em voz alta.</strong></p>
+    </div>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- ============================================================
+     5 · O VILÃO
+     ============================================================ -->
+<section>
+  <div class="wrap">
+    <div class="an"><span class="rotulo">Parte 2 · Por que não é preguiça</span></div>
+    <h2 class="an">Você não é preguiçoso. Você está em desvantagem.</h2>
+    <p class="lead h2-sub an">Todo aplicativo no seu celular foi construído para vencer a sua atenção. Literalmente. É o trabalho de alguém.</p>
+
+    <div class="duo an" style="margin-top:30px">
+      <div class="card mau">
+        <div class="duo-t">Do outro lado</div>
+        <ul class="lista r">
+          <li>Os melhores engenheiros do mundo</li>
+          <li>Psicólogos comportamentais em tempo integral</li>
+          <li>Bilhões investidos em prender você</li>
+          <li>Testando com bilhões de pessoas, 24 horas por dia</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="duo-t">Do seu lado</div>
+        <ul class="lista">
+          <li>Sua força de vontade.</li>
+          <li>Depois de um dia inteiro de trabalho.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="impacto centro an">Você nunca teve chance.</div>
+
+    <div class="an">
+      <p>Isso não te isenta. Ninguém vai fazer por você, e nenhuma explicação executa no seu lugar.</p>
+      <p>Mas muda tudo no ponto de partida:</p>
+    </div>
+
+    <div class="impacto an">
+      Você não está consertando um defeito seu. Está retomando um território que foi ocupado.
+    </div>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- ============================================================
+     6 · O CEMITÉRIO
+     ============================================================ -->
+<section>
+  <div class="wrap">
+    <div class="an"><span class="rotulo rotulo-n">O que você já tentou</span></div>
+    <h2 class="an">Todas elas tinham a mesma peça faltando.</h2>
+
+    <div class="card an" style="margin-top:28px">
+      <div id="mortas"></div>
+    </div>
+
+    <div class="impacto an" style="margin-top:36px">
+      Todas te ensinaram a começar.<br>
+      Nenhuma te ensinou o que fazer no dia em que você falhasse.
+    </div>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- ============================================================
+     7 · A DESCOBERTA + AUTORIDADE
+     ============================================================ -->
+<section>
+  <div class="wrap">
+    <div class="an"><span class="rotulo">Parte 3 · A virada</span></div>
+    <h2 class="an">A peça que faltava tem nome.</h2>
+
+    <!-- ====== BLOCO DO AUTOR ======
+         SUBSTITUIR os três trechos marcados com [ ] antes de publicar.
+         ============================ -->
+    <div class="card an" style="margin-top:30px">
+      <div class="autor">
+        <img class="autor-foto" src="/autor.jpg" alt="" onerror="this.style.display='none'">
+        <div>
+          <div class="autor-nome">[SEU NOME]</div>
+          <div class="autor-cargo">Criador do Ciclo do Comando</div>
+        </div>
+      </div>
+      <p>[UMA FRASE SOBRE ONDE VOCÊ ESTAVA — o momento concreto em que a procrastinação te custou algo real. Exemplo do formato: “Em 2023 eu tinha três projetos parados e uma lista de coisas que eu jurava começar na segunda.”]</p>
+      <p>[O QUE VOCÊ TENTOU E FALHOU — as coisas específicas, com os números que você lembra. Exemplo: “Comprei quatro cursos. Terminei nenhum. Assinei dois aplicativos de hábito. O recorde foi doze dias.”]</p>
+      <p>[O QUE VOCÊ PERCEBEU — a virada. Exemplo: “Um dia eu olhei para trás e vi que nunca foi o começo que falhou. Sempre foi o dia depois do tropeço. E eu nunca tinha plano nenhum para esse dia.”]</p>
+      <p>Foi isso que eu construí primeiro para mim. Deu certo comigo antes de virar produto — e é por isso que ele é assim, e não do jeito bonitinho que todo mundo faz.</p>
+    </div>
+    <!-- ====== FIM DO BLOCO DO AUTOR ====== -->
+
+    <div class="an" style="margin-top:36px">
+      <p>Todo método de hábito parte de uma suposição silenciosa: <strong>a de que você vai executar.</strong></p>
+      <p>Nenhum deles planeja o contrário. E o contrário não é exceção — é a única certeza do processo. Você vai perder um dia. Todo mundo perde. Sempre.</p>
+      <p>O que decide o resultado inteiro não é o dia em que você falha.</p>
+    </div>
+
+    <div class="impacto an">É o dia seguinte.</div>
+
+    <div class="an">
+      <p>E é exatamente esse dia que nenhum método te ensina a atravessar. Você fica sozinho, com a culpa fresca, tendo que decidir na hora — no pior momento possível para decidir qualquer coisa.</p>
+    </div>
+
+    <div class="card an" style="margin-top:14px;border-color:rgba(217,154,43,.3);background:linear-gradient(180deg,rgba(217,154,43,.06),transparent)">
+      <span class="rotulo" style="margin-bottom:12px">O mecanismo</span>
+      <h3>O Protocolo de Recaída</h3>
+      <p style="margin-top:12px">É a parte do Ciclo do Comando que existe só para esse dia. Escrito por você, com estrutura, <strong>antes de você precisar</strong>.</p>
+      <p>Porque no dia em que precisar, você não vai estar em condição de escrever nada.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- ============================================================
+     8 · O MÉTODO
+     ============================================================ -->
+<section>
+  <div class="wrap">
+    <div class="an"><span class="rotulo">O método</span></div>
+    <h2 class="an">O Ciclo do Comando</h2>
+    <p class="lead h2-sub an">Não é um curso. Não são aulas para assistir. É um protocolo de 21 dias, em três fases, que você faz <strong>um dia por vez</strong>.</p>
+
+    <div style="margin-top:34px">
+      <div class="fase an">
+        <div class="fase-n">1</div>
+        <div class="fase-t"><h3>Corte</h3><span class="fase-d">DIAS 1—7</span></div>
+        <p>Na primeira semana você não adiciona nada. Só tira: notificações, compromissos que aceitou sem querer, decisões que gastam energia à toa. Porque ninguém constrói em terreno ocupado.</p>
+      </div>
+      <div class="fase an">
+        <div class="fase-n">2</div>
+        <div class="fase-t"><h3>Comando</h3><span class="fase-d">DIAS 8—14</span></div>
+        <p>Entra uma ação. Uma só, tão pequena que você não consegue justificar não fazer. Horário fixo, gatilho definido, todo dia. Porque quem decide todo dia, um dia decide não.</p>
+      </div>
+      <div class="fase an">
+        <div class="fase-n">3</div>
+        <div class="fase-t"><h3>Constância</h3><span class="fase-d">DIAS 15—21</span></div>
+        <p>A semana que ninguém ensina. É onde você escreve o seu Protocolo de Recaída — o plano para o dia em que falhar. Porque você vai falhar, e dessa vez vai saber exatamente o que fazer no dia seguinte.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- ============================================================
+     9 · DEMONSTRAÇÃO
+     ============================================================ -->
+<section>
+  <div class="wrap">
+    <div class="an" style="text-align:center"><span class="rotulo">Veja funcionar</span></div>
+    <h2 class="an" style="text-align:center">Falhar não apaga o seu progresso.</h2>
+    <p class="lead h2-sub an" style="text-align:center">Lembra do aplicativo de hábitos que zerou os seus doze dias? Aqui isso não existe. Clique e veja.</p>
+
+    <div class="duo an" style="margin-top:32px">
+      <div class="card mau">
+        <div class="duo-t">Todos os outros</div>
+        <div class="pontos" id="pontos-mau"></div>
+        <p class="sub2" style="text-align:center;margin-top:6px" id="txt-mau">Você falhou. Voltamos ao zero.</p>
+      </div>
+      <div class="card bom">
+        <div class="duo-t">Cérebro Rico</div>
+        <div class="pontos" id="pontos-bom"></div>
+        <p class="sub2" style="text-align:center;margin-top:6px" id="txt-bom">Você falhou. Continua onde estava.</p>
+      </div>
+    </div>
+
+    <div class="an" style="text-align:center;margin-top:22px">
+      <button id="simular" style="background:var(--surf2);border:1px solid var(--line2);color:var(--t1);font-family:inherit;font-size:14px;font-weight:600;padding:13px 26px;border-radius:11px;cursor:pointer;letter-spacing:.01em">
+        Simular uma falha
+      </button>
+    </div>
+
+    <div class="impacto centro an">
+      Falhar um dia é um dia.<br>Falhar dois é uma decisão.
+    </div>
+  </div>
+
+  <!-- telas do app -->
+  <div class="wrap wrap-w an" style="margin-top:20px">
+    <div class="telas">
+      <div class="tela">
+        <div class="tela-topo"><span>Cérebro Rico</span><span>13 / 21</span></div>
+        <div class="pontos" id="tela-a"></div>
+        <div class="tela-legenda">Seu progresso, sempre visível</div>
+      </div>
+      <div class="tela">
+        <div class="tela-topo"><span>Dia 15</span><span>Fase 3</span></div>
+        <div class="tela-titulo">Você vai falhar</div>
+        <div class="tela-txt">E isso já está previsto. Em algum momento você vai perder um dia. A pergunta não é se — é o que você faz no dia seguinte.</div>
+        <div class="tela-legenda">Uma leitura curta por dia</div>
+      </div>
+      <div class="tela">
+        <div class="tela-topo"><span>Registro</span><span>Hoje</span></div>
+        <div class="tela-titulo">Um dia é um dia</div>
+        <div class="tela-txt">Aqui não existe reset. Seu progresso continua exatamente onde estava, e o dia seguinte já tem instrução.</div>
+        <div class="tela-legenda">Sem punição, sem zerar</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap an" style="margin-top:38px">
+    <a class="cta" href="https://pay.kirvano.com/0191985a-c6d1-4c8b-835b-23cbb6b87592">QUERO COMEÇAR O DIA 1</a>
+    <span class="cta-sub"><b>R$47</b> · pagamento único · 7 dias de garantia</span>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- ============================================================
+     10 · TRANSPARÊNCIA
+     ============================================================ -->
+<section>
+  <div class="wrap">
+    <div class="an"><span class="rotulo">Uma coisa que você vai notar</span></div>
+    <h2 class="an">Você não vai encontrar nenhum depoimento nesta página.</h2>
+
+    <div class="an" style="margin-top:26px">
+      <p>Nenhum print de WhatsApp. Nenhuma foto de antes e depois. Nenhum “mudou minha vida”.</p>
+      <p>Não é descuido. É que o Cérebro Rico é novo, e as primeiras pessoas ainda estão dentro dos 21 dias delas. Quando terminarem, quem quiser falar vai aparecer aqui — com nome, e sem edição.</p>
+      <p>E tem uma segunda razão, mais honesta:</p>
+    </div>
+
+    <div class="impacto an">
+      Você já viu página cheia de depoimento, acreditou, comprou — e não funcionou. Então nós dois sabemos exatamente quanto aquilo vale.
+    </div>
+
+    <div class="an">
+      <p>O que eu posso te dar no lugar é melhor do que a palavra de um desconhecido: <strong>o produto inteiro na sua mão, por sete dias.</strong></p>
+      <p>Você entra, faz a primeira semana completa, testa o método com a sua própria rotina. Se não for o que eu disse que é, pede o dinheiro de volta e acabou.</p>
+      <p><strong>A única prova que interessa é a que acontece com você.</strong></p>
+    </div>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- ============================================================
+     11 · O QUE VOCÊ RECEBE
+     ============================================================ -->
+<section>
+  <div class="wrap">
+    <div class="an"><span class="rotulo">O que você recebe</span></div>
+    <h2 class="an">Cinco coisas. Nenhuma delas é aula.</h2>
+
+    <div class="card an" style="margin-top:28px">
+      <div class="item">
+        <div class="item-n">1</div>
+        <div><h3>O protocolo completo de 21 dias</h3><p>Dentro do aplicativo, um dia por vez. Cada dia com uma leitura de dois minutos e uma ação desenhada para caber na sua rotina real — não na ideal.</p></div>
+      </div>
+      <div class="item">
+        <div class="item-n">2</div>
+        <div><h3>As três fases, na ordem certa</h3><p>Corte, Comando e Constância. A ordem não é estética: é o método. Tirar antes de adicionar é o que faz a diferença entre durar sete dias e durar.</p></div>
+      </div>
+      <div class="item">
+        <div class="item-n">3</div>
+        <div><h3>O Protocolo de Recaída, por escrito</h3><p>O plano para o dia em que você falhar, construído por você antes de precisar. É a peça que nenhum outro método te deu — e a razão de este funcionar.</p></div>
+      </div>
+      <div class="item">
+        <div class="item-n">4</div>
+        <div><h3>O aplicativo no seu celular</h3><p>Não é PDF para baixar e nunca abrir. É um ícone na sua tela de início que te espera todo dia, no mesmo lugar.</p></div>
+      </div>
+      <div class="item">
+        <div class="item-n">5</div>
+        <div><h3>Entrada sem senha</h3><p>Você entra com o e-mail da compra. Sem cadastro, sem código, sem “esqueci minha senha” no dia em que a vontade já estava por um fio.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- ============================================================
+     12 · ANCORAGEM + PREÇO
+     ============================================================ -->
+<section>
+  <div class="wrap">
+    <div class="an"><span class="rotulo rotulo-n">O investimento</span></div>
+    <h2 class="an">Some o que você já gastou tentando resolver isso.</h2>
+
+    <div class="an" style="margin-top:26px">
+      <p>O curso que você assistiu vinte por cento. O aplicativo que você assinou e parou de abrir no mês seguinte. O planner. A agenda nova de janeiro. O livro que está na estante com o marcador na página trinta.</p>
+      <p>Não estou julgando — a lista é honesta porque eu também tenho a minha.</p>
+      <p><strong>Soma tudo. Dá um número desconfortável, não dá?</strong></p>
+      <p>Agora repara: nenhum deles falhou por ser ruim. Falharam porque todos assumiam que você não ia tropeçar.</p>
+    </div>
+
+    <div class="preco-caixa an" style="margin-top:34px">
+      <div class="preco-de">Acesso completo ao protocolo</div>
+      <div class="preco">R$47</div>
+      <div class="preco-sub">Pagamento único · sem mensalidade · sem renovação automática</div>
+      <a class="cta" href="https://pay.kirvano.com/0191985a-c6d1-4c8b-835b-23cbb6b87592">QUERO COMEÇAR O DIA 1</a>
+      <span class="cta-sub">Acesso liberado na hora, no mesmo e-mail da compra</span>
+    </div>
+
+    <p class="sub2 an" style="text-align:center;margin-top:22px">
+      Menos que um delivery de sexta à noite. E, diferente dele, não acaba em duas horas.
+    </p>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- ============================================================
+     13 · GARANTIA
+     ============================================================ -->
+<section>
+  <div class="wrap wrap-n gar">
+    <svg class="selo-g an" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+      <circle cx="60" cy="60" r="55" stroke="#d99a2b" stroke-width="1.5" opacity=".45"/>
+      <circle cx="60" cy="60" r="47" stroke="#d99a2b" stroke-width="1" opacity=".28" stroke-dasharray="3 5"/>
+      <text x="60" y="55" text-anchor="middle" fill="#e8b95a" font-family="Inter,sans-serif" font-size="27" font-weight="800" letter-spacing="-1">7</text>
+      <text x="60" y="72" text-anchor="middle" fill="#d99a2b" font-family="Inter,sans-serif" font-size="10" font-weight="700" letter-spacing="2.4">DIAS</text>
+      <path d="M42 84h36" stroke="#d99a2b" stroke-width="1" opacity=".4"/>
+    </svg>
+
+    <div class="an"><span class="rotulo">Risco zero</span></div>
+    <h2 class="an">A garantia cobre a fase inteira do Corte.</h2>
+
+    <div class="an" style="margin-top:24px">
+      <p>Sete dias corridos a partir da compra. Você entra, faz a primeira semana completa do método — não uma amostra, a fase inteira — e decide.</p>
+      <p><strong>Não gostou? Pede o dinheiro de volta.</strong> Sem pergunta, sem formulário, sem constrangimento, sem precisar justificar nada.</p>
+      <p>Isso significa que o risco desta decisão não é seu. É meu.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- ============================================================
+     14 · QUALIFICAÇÃO
+     ============================================================ -->
+<section>
+  <div class="wrap">
+    <div class="an"><span class="rotulo rotulo-n">Antes de decidir</span></div>
+    <h2 class="an">Isto não é para todo mundo.</h2>
+
+    <div class="duo an" style="margin-top:28px">
+      <div class="card bom">
+        <div class="duo-t">É para você se</div>
+        <ul class="lista g">
+          <li>Você começa três coisas e não termina nenhuma</li>
+          <li>Só consegue trabalhar quando o prazo já estourou</li>
+          <li>Já comprou curso, fez lista, acordou cedo — e viu tudo voltar ao que era</li>
+          <li>Perdeu a confiança na própria palavra</li>
+        </ul>
+      </div>
+      <div class="card mau">
+        <div class="duo-t">Não é para você se</div>
+        <ul class="lista r">
+          <li>Você procura motivação. Aqui não tem frase de efeito.</li>
+          <li>Quer assistir e não executar. Não tem vídeo de duas horas.</li>
+          <li>Espera que 21 dias resolvam a vida inteira. Não resolvem.</li>
+          <li>Está procurando tratamento de saúde. Isto não é, e não substitui.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- ============================================================
+     15 · FAQ
+     ============================================================ -->
+<section>
+  <div class="wrap">
+    <div class="an"><span class="rotulo rotulo-n">Perguntas</span></div>
+    <h2 class="an">O que costumam me perguntar.</h2>
+
+    <div class="an" style="margin-top:26px" id="faq"></div>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- ============================================================
+     16 · FECHAMENTO
+     ============================================================ -->
+<section>
+  <div class="wrap">
+    <div class="an"><span class="rotulo">A decisão</span></div>
+    <h2 class="an">Você tem duas saídas.</h2>
+
+    <div class="an" style="margin-top:26px">
+      <p><strong>A primeira:</strong> fecha esta página. E aí, sinceramente, nada muda. Daqui a seis meses você vai estar deitado, meia-noite, fazendo aquela mesma lista mental — com um item a mais nela.</p>
+      <p><strong>A segunda:</strong> você começa o dia 1. Que leva dez minutos.</p>
+      <p>Não vou dizer que a sua vida muda em 21 dias. Não muda. O que muda é uma coisa só, e ela é suficiente:</p>
+    </div>
+
+    <div class="impacto an">Você para de depender de estar motivado.</div>
+
+    <div class="impacto centro an" style="margin-top:34px">
+      A culpa não foi sua.<br>Mas a saída é.
+    </div>
+
+    <div class="an" style="margin-top:8px">
+      <a class="cta" href="https://pay.kirvano.com/0191985a-c6d1-4c8b-835b-23cbb6b87592">QUERO COMEÇAR O DIA 1</a>
+      <span class="cta-sub"><b>R$47</b> · pagamento único · 7 dias de garantia incondicional</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     RODAPÉ
+     ============================================================ -->
+<div class="wrap rodape">
+  <p style="color:inherit">Cérebro Rico — O Ciclo do Comando</p>
+  <p style="color:inherit;margin-top:10px">Este produto não faz alegações médicas, psicológicas ou terapêuticas.<br>Resultados dependem da execução individual.</p>
+  <p style="color:inherit;margin-top:10px"><a href="/politica">Política de privacidade e termos</a> · <a href="mailto:extremejrcanal@gmail.com">Suporte</a></p>
+</div>
+
+<div class="barra" id="barra"><a href="https://pay.kirvano.com/0191985a-c6d1-4c8b-835b-23cbb6b87592">COMEÇAR O DIA 1 · R$47</a></div>
+
+<script>
+/* =========================================================
+   CONTEÚDO
+   ========================================================= */
+var MORTAS=[
+["Aplicativo de hábitos","Funcionou uns doze dias. Aí você perdeu um, o app zerou tudo, e você nunca mais abriu."],
+["Planner de papel","Preencheu três páginas. Está numa gaveta agora."],
+["Acordar às cinco","Durou quatro dias."],
+["Curso online","Assistiu vinte por cento."],
+["Lista de tarefas","Virou uma coleção de cobranças."]
+];
+
+var FAQ=[
+["Como eu recebo o acesso?","Na hora. Assim que o pagamento é aprovado, o acesso é liberado automaticamente. Você entra com o mesmo e-mail que usou na compra — sem senha e sem código."],
+["Funciona no celular?","É feito para celular. E pode ser instalado na tela de início como um aplicativo normal, com ícone e tudo. Não precisa baixar nada de loja."],
+["Quanto tempo leva por dia?","Cerca de dez minutos. A leitura tem dois minutos e a ação do dia foi desenhada para caber numa rotina real, não numa rotina ideal."],
+["Posso fazer no meu ritmo?","Um dia por dia. É proposital: o intervalo faz parte do método. Você não consegue consumir tudo de uma vez e não executar nada, que é exatamente o que costuma acontecer."],
+["E se eu parar no meio?","Você retoma de onde parou. Nada é apagado, nada zera. É a diferença central deste protocolo."],
+["Tem base científica?","Não fazemos alegação científica, médica ou terapêutica. É um método de execução e mudança de hábito, baseado em estrutura e repetição."],
+["É cobrança recorrente?","Não. R$47 uma vez. Sem mensalidade e sem renovação automática."],
+["Como funciona a garantia?","Sete dias corridos a partir da confirmação do pagamento. Basta escrever para o suporte com o e-mail da compra. Não precisa justificar."],
+["Serve se eu já tentei de tudo?","É justamente para quem já tentou. O protocolo parte do princípio de que os métodos anteriores não falharam por serem ruins, mas por não terem plano para o dia da falha."]
+];
+
+/* =========================================================
+   MONTAGEM
+   ========================================================= */
+function pontos(el,cfg){
+  if(!el) return;
+  el.innerHTML="";
+  for(var i=1;i<=21;i++){
+    var d=document.createElement("div");
+    d.className="pt";
+    if(cfg.ok&&cfg.ok.indexOf(i)>-1) d.className+=" ok";
+    if(cfg.falhou&&cfg.falhou.indexOf(i)>-1) d.className+=" falhou";
+    if(cfg.hoje===i) d.className+=" hoje";
+    d.textContent=i;
+    el.appendChild(d);
+  }
+}
+
+pontos(document.getElementById("pontos-cena"),{ok:[1,2,3],falhou:[4]});
+pontos(document.getElementById("tela-a"),{ok:[1,2,3,4,5,6,7,8,9,10,11,12],hoje:13});
+
+(function(){
+  var alvo=document.getElementById("mortas");
+  if(!alvo) return;
+  MORTAS.forEach(function(m){
+    var d=document.createElement("div");
+    d.className="item";
+    d.innerHTML='<div class="item-n" style="background:rgba(196,98,45,.1);border-color:rgba(196,98,45,.24);color:#d1743f">&times;</div>'+
+                '<div><h3>'+m[0]+'</h3><p>'+m[1]+'</p></div>';
+    alvo.appendChild(d);
+  });
+})();
+
+(function(){
+  var alvo=document.getElementById("faq");
+  if(!alvo) return;
+  FAQ.forEach(function(f){
+    var d=document.createElement("details");
+    d.innerHTML="<summary>"+f[0]+"</summary><div class='resp'>"+f[1]+"</div>";
+    alvo.appendChild(d);
+  });
+})();
+
+/* =========================================================
+   SIMULADOR DE FALHA
+   ========================================================= */
+(function(){
+  var mau=document.getElementById("pontos-mau"),
+      bom=document.getElementById("pontos-bom"),
+      btn=document.getElementById("simular"),
+      tm=document.getElementById("txt-mau"),
+      tb=document.getElementById("txt-bom");
+  if(!mau||!bom||!btn) return;
+
+  var feitos=[1,2,3,4,5,6,7,8,9,10,11,12];
+
+  function inicial(){
+    pontos(mau,{ok:feitos,hoje:13});
+    pontos(bom,{ok:feitos,hoje:13});
+    tm.textContent="Doze dias seguidos.";
+    tb.textContent="Doze dias seguidos.";
+    btn.textContent="Simular uma falha";
+    btn.dataset.estado="pronto";
+  }
+
+  function falhar(){
+    pontos(mau,{ok:[],hoje:1});
+    pontos(bom,{ok:feitos,falhou:[13],hoje:14});
+    tm.innerHTML="Você falhou. <b style='color:#e08a52'>Voltamos ao zero.</b>";
+    tb.innerHTML="Você falhou. <b style='color:var(--gold)'>Continua exatamente onde estava.</b>";
+    btn.textContent="Ver de novo";
+    btn.dataset.estado="feito";
+  }
+
+  btn.addEventListener("click",function(){
+    if(btn.dataset.estado==="feito") inicial(); else falhar();
+  });
+
+  inicial();
+})();
+
+/* =========================================================
+   ANIMAÇÃO DE ENTRADA
+   ========================================================= */
+(function(){
+  var itens=document.querySelectorAll(".an");
+  if(!("IntersectionObserver" in window)){
+    for(var i=0;i<itens.length;i++) itens[i].classList.add("go");
+    return;
+  }
+  var obs=new IntersectionObserver(function(e){
+    e.forEach(function(x){
+      if(x.isIntersecting){ x.target.classList.add("go"); obs.unobserve(x.target); }
+    });
+  },{rootMargin:"0px 0px -8% 0px",threshold:.08});
+  for(var j=0;j<itens.length;j++) obs.observe(itens[j]);
+})();
+
+/* =========================================================
+   BARRA FIXA
+   ========================================================= */
+(function(){
+  var barra=document.getElementById("barra");
+  if(!barra) return;
+  function ver(){
+    if(window.scrollY>window.innerHeight*.9) barra.classList.add("ver");
+    else barra.classList.remove("ver");
+  }
+  window.addEventListener("scroll",ver,{passive:true});
+  ver();
+})();
+
+</script>
+</body>
+</html>
