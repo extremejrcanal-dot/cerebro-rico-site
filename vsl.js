@@ -8,7 +8,7 @@
   var REVELAR_EM = 510;                 // 8:30 em segundos
   var CHAVE = "cr_vsl_liberado";
   var CONTA = "618e6aba-dba5-44c2-ae23-f0af83c3113a";
-  var PLAYER = "6a7be456103dc1c2aae9b604";
+  var PLAYER = "6a808eaf640c4e850794191d";
 
   /* ---------- 1. o player ---------- */
   function porPlayer() {
