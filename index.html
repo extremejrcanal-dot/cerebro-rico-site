@@ -114,21 +114,10 @@ strong,b{color:var(--t1);font-weight:600}
 }
 .cta-sub b{color:var(--t2);font-weight:600}
 
-/* barra fixa */
-.barra{
-  position:fixed;left:0;right:0;bottom:0;z-index:60;
-  background:rgba(10,10,12,.93);backdrop-filter:blur(14px);
-  border-top:1px solid var(--line2);padding:11px 16px calc(11px + env(safe-area-inset-bottom));
-  transform:translateY(110%);transition:transform .32s cubic-bezier(.2,.8,.2,1);
-}
-.barra.ver{transform:translateY(0)}
-.barra a{
-  display:block;max-width:430px;margin:0 auto;
-  background:linear-gradient(180deg,var(--gold-l),var(--gold));color:#140d02;
-  text-decoration:none;text-align:center;font-weight:800;font-size:14.5px;
-  letter-spacing:.03em;padding:15px;border-radius:11px;
-}
-@media(min-width:820px){.barra{display:none}}
+/* marca no topo */
+.marca{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:26px}
+.marca-simbolo{width:30px;height:30px;flex:none}
+.marca-nome{font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--t1)}
 
 /* ---------- selos de confiança ---------- */
 .selos{
@@ -275,6 +264,50 @@ details .resp{padding:0 8px 22px 0;color:var(--t2);font-size:15.5px;line-height:
 .tela-titulo{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:6px}
 .tela-txt{font-size:13px;color:var(--t2);line-height:1.55}
 
+/* ---------- relatos dos alunos ---------- */
+.relatos{display:grid;gap:14px}
+@media(min-width:760px){.relatos{grid-template-columns:1fr 1fr}}
+.relato{
+  position:relative;overflow:hidden;
+  background:linear-gradient(180deg,rgba(217,154,43,.07),rgba(217,154,43,0) 55%),var(--surf);
+  border:1px solid rgba(217,154,43,.24);border-radius:20px;
+  padding:clamp(24px,4.4vw,32px);
+  display:flex;flex-direction:column;
+}
+.relato::before{
+  content:"\201C";position:absolute;right:18px;top:-18px;
+  font-size:150px;line-height:1;font-weight:800;color:rgba(217,154,43,.09);
+  pointer-events:none;font-family:Georgia,serif;
+}
+.relato-topo{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.relato-avatar{
+  flex:none;width:50px;height:50px;border-radius:50%;
+  display:grid;place-items:center;font-size:19px;font-weight:800;color:var(--gold-l);
+  background:radial-gradient(circle at 30% 25%,rgba(232,185,90,.22),rgba(217,154,43,.06));
+  border:1.5px solid rgba(217,154,43,.5);
+  box-shadow:0 0 0 5px rgba(217,154,43,.06);
+}
+.relato-nome{font-weight:700;font-size:16.5px;color:var(--t1);letter-spacing:-.015em}
+.relato-tag{
+  display:inline-block;margin-top:5px;font-size:10px;font-weight:700;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--gold);
+}
+.relato-frase{
+  font-size:clamp(19px,3.6vw,22px);font-weight:700;line-height:1.38;
+  letter-spacing:-.022em;color:var(--t1);margin:0 0 16px;position:relative;
+}
+.relato-frase::before{content:"\201C";color:var(--gold)}
+.relato-frase::after{content:"\201D";color:var(--gold)}
+.relato-apoio{font-size:15.5px;line-height:1.65;color:var(--t2);margin-bottom:22px}
+.relato-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;padding-top:18px;border-top:1px solid var(--line)}
+.relato-chips span{
+  display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--t2);
+  background:rgba(255,255,255,.035);border:1px solid var(--line);
+  padding:6px 11px;border-radius:99px;
+}
+.relato-chips span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.relatos-nota{font-size:12.5px;color:var(--t3);text-align:center;margin-top:18px;line-height:1.6}
+
 /* ---------- vsl ---------- */
 .vsl-caixa{margin:26px auto 0}
 .vsl-espaco{
@@ -296,10 +329,9 @@ details .resp{padding:0 8px 22px 0;color:var(--t2);font-size:15.5px;line-height:
 
 /* ---------- rodapé ---------- */
 .rodape{
-  padding:52px 0 130px;text-align:center;color:var(--t3);
+  padding:52px 0 64px;text-align:center;color:var(--t3);
   font-size:13px;line-height:1.85;
 }
-@media(min-width:820px){.rodape{padding-bottom:64px}}
 .rodape a{color:var(--t2);text-decoration:underline;text-underline-offset:3px}
 a{color:inherit}
 </style>
@@ -312,6 +344,15 @@ a{color:inherit}
      ============================================================ -->
 <section style="padding-top:clamp(52px,10vw,86px)">
   <div class="wrap">
+    <div class="marca an d1">
+      <svg class="marca-simbolo" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <path d="M20 5 A15 15 0 0 1 35 20" stroke="#d99a2b" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M20 11 A9 9 0 0 1 29 20" stroke="#d99a2b" stroke-width="2.2" stroke-linecap="round" opacity=".62"/>
+        <path d="M20 17 A3 3 0 0 1 23 20" stroke="#d99a2b" stroke-width="2.2" stroke-linecap="round" opacity=".34"/>
+        <rect x="18.6" y="24" width="2.8" height="11" rx="1.4" fill="#d99a2b"/>
+      </svg>
+      <span class="marca-nome">Cérebro Rico</span>
+    </div>
     <div class="an d1" style="text-align:center">
       <span class="rotulo">O Ciclo do Comando · Protocolo de 21 dias</span>
     </div>
@@ -320,12 +361,7 @@ a{color:inherit}
       Desistiu porque ninguém nunca te deu um plano para o dia seguinte àquele em que você falhou.
     </p>
 
-    <div class="an d4" style="margin-top:34px">
-      <a class="cta" href="https://pay.kirvano.com/0191985a-c6d1-4c8b-835b-23cbb6b87592">QUERO COMEÇAR O DIA 1</a>
-      <span class="cta-sub"><b>R$47</b> · pagamento único · 7 dias de garantia</span>
-    </div>
-
-    <div class="selos an d5">
+    <div class="selos an d4">
       <span class="selo"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Acesso imediato</span>
       <span class="selo"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Sem mensalidade</span>
       <span class="selo"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Devolução em 7 dias</span>
@@ -614,35 +650,70 @@ a{color:inherit}
       </div>
     </div>
   </div>
-
-  <div class="wrap an" style="margin-top:38px">
-    <a class="cta" href="https://pay.kirvano.com/0191985a-c6d1-4c8b-835b-23cbb6b87592">QUERO COMEÇAR O DIA 1</a>
-    <span class="cta-sub"><b>R$47</b> · pagamento único · 7 dias de garantia</span>
-  </div>
 </section>
 
 <hr class="hr">
 
 <!-- ============================================================
-     10 · TRANSPARÊNCIA
+     10 · OS PRIMEIROS ALUNOS
      ============================================================ -->
 <section>
   <div class="wrap">
-    <div class="an"><span class="rotulo">Uma coisa que você vai notar</span></div>
-    <h2 class="an">Você não vai encontrar nenhum depoimento nesta página.</h2>
+    <div class="an"><span class="rotulo">Os primeiros alunos</span></div>
+    <h2 class="an">Antes de abrir para o público, eu deixei algumas pessoas fazerem o protocolo.</h2>
 
     <div class="an" style="margin-top:26px">
-      <p>Nenhum print de WhatsApp. Nenhuma foto de antes e depois. Nenhum “mudou minha vida”.</p>
-      <p>Não é descuido. É que o Cérebro Rico é novo, e as primeiras pessoas ainda estão dentro dos 21 dias delas. Quando terminarem, quem quiser falar vai aparecer aqui — com nome, e sem edição.</p>
-      <p>E tem uma segunda razão, mais honesta:</p>
+      <p>Gente que eu conheço pessoalmente. Elas fizeram de graça e, em troca, eu pedi uma coisa só: que me contassem, sem enfeite, como tinha sido.</p>
+      <p>Não tem foto de antes e depois, nem “mudou minha vida”. Tem o que eles me disseram.</p>
     </div>
+  </div>
 
+  <div class="wrap wrap-w" style="margin-top:34px">
+    <div class="relatos">
+
+      <article class="relato an d1">
+        <div class="relato-topo">
+          <div class="relato-avatar" aria-hidden="true">R</div>
+          <div>
+            <div class="relato-nome">Ricardo M.</div>
+            <div class="relato-tag">Primeira turma</div>
+          </div>
+        </div>
+        <blockquote class="relato-frase">O protocolo me ajudou a organizar minha rotina e a diminuir a procrastinação.</blockquote>
+        <p class="relato-apoio">“Consegui manter 10 dias seguidos sem procrastinar nas tarefas mais importantes.”</p>
+        <div class="relato-chips">
+          <span>Rotina mais organizada</span>
+          <span>Menos procrastinação</span>
+        </div>
+      </article>
+
+      <article class="relato an d2">
+        <div class="relato-topo">
+          <div class="relato-avatar" aria-hidden="true">J</div>
+          <div>
+            <div class="relato-nome">Jerson A.</div>
+            <div class="relato-tag">Primeira turma</div>
+          </div>
+        </div>
+        <blockquote class="relato-frase">Em poucas semanas já senti uma diferença enorme na minha concentração.</blockquote>
+        <p class="relato-apoio">“Não é mágica, mas é um método muito bem estruturado. Já recomendei para dois amigos.”</p>
+        <div class="relato-chips">
+          <span>Mais concentração</span>
+          <span>Indicou para 2 amigos</span>
+        </div>
+      </article>
+
+    </div>
+    <p class="relatos-nota an">Ricardo e Jerson fizeram o protocolo com acesso cortesia, antes do lançamento. Nomes publicados com autorização.</p>
+  </div>
+
+  <div class="wrap" style="margin-top:44px">
     <div class="impacto an">
-      Você já viu página cheia de depoimento, acreditou, comprou — e não funcionou. Então nós dois sabemos exatamente quanto aquilo vale.
+      Dois relatos não dizem nada sobre a sua rotina. Quem decide se funciona é você.
     </div>
 
     <div class="an">
-      <p>O que eu posso te dar no lugar é melhor do que a palavra de um desconhecido: <strong>o produto inteiro na sua mão, por sete dias.</strong></p>
+      <p>Por isso o que eu te dou é melhor do que a palavra de qualquer pessoa: <strong>o produto inteiro na sua mão, por sete dias.</strong></p>
       <p>Você entra, faz a primeira semana completa, testa o método com a sua própria rotina. Se não for o que eu disse que é, pede o dinheiro de volta e acabou.</p>
       <p><strong>A única prova que interessa é a que acontece com você.</strong></p>
     </div>
@@ -826,8 +897,6 @@ a{color:inherit}
   <p style="color:inherit;margin-top:10px"><a href="/politica">Política de privacidade e termos</a> · <a href="mailto:extremejrcanal@gmail.com">Suporte</a></p>
 </div>
 
-<div class="barra" id="barra"><a href="https://pay.kirvano.com/0191985a-c6d1-4c8b-835b-23cbb6b87592">COMEÇAR O DIA 1 · R$47</a></div>
-
 <script>
 /* =========================================================
    CONTEÚDO
@@ -947,20 +1016,6 @@ pontos(document.getElementById("tela-a"),{ok:[1,2,3,4,5,6,7,8,9,10,11,12],hoje:1
     });
   },{rootMargin:"0px 0px -8% 0px",threshold:.08});
   for(var j=0;j<itens.length;j++) obs.observe(itens[j]);
-})();
-
-/* =========================================================
-   BARRA FIXA
-   ========================================================= */
-(function(){
-  var barra=document.getElementById("barra");
-  if(!barra) return;
-  function ver(){
-    if(window.scrollY>window.innerHeight*.9) barra.classList.add("ver");
-    else barra.classList.remove("ver");
-  }
-  window.addEventListener("scroll",ver,{passive:true});
-  ver();
 })();
 
 </script>
