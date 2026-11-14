@@ -22,7 +22,8 @@
 <link rel="preload" as="fetch" crossorigin href="https://cdn.converteai.net/618e6aba-dba5-44c2-ae23-f0af83c3113a/6a88e65715c6619bf3612019/main.m3u8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
 <style>
 /* ==========================================================
    CÉREBRO RICO — PÁGINA DE VENDAS
@@ -450,12 +451,12 @@ a{color:inherit}
 <div class="progresso" id="progresso" aria-hidden="true"></div>
 
 <!-- ============================================================
-     1 · HERO
+     1 · HERO + VSL (sem animação de entrada: aparece na hora)
      ============================================================ -->
-<section style="padding-top:clamp(52px,10vw,86px)">
+<section style="padding-top:clamp(28px,6vw,64px)">
   <div class="hero-luz" aria-hidden="true"></div>
   <div class="wrap">
-    <div class="marca an d1">
+    <div class="marca">
       <svg class="marca-simbolo" viewBox="0 0 40 40" fill="none" aria-hidden="true">
         <path pathLength="1" d="M20 5 A15 15 0 0 1 35 20" stroke="#d99a2b" stroke-width="2.2" stroke-linecap="round"/>
         <path pathLength="1" d="M20 11 A9 9 0 0 1 29 20" stroke="#d99a2b" stroke-width="2.2" stroke-linecap="round" opacity=".62"/>
@@ -464,43 +465,26 @@ a{color:inherit}
       </svg>
       <span class="marca-nome">Cérebro Rico</span>
     </div>
-    <div class="an d1" style="text-align:center">
-      <span class="rotulo">O Ciclo do Comando · Protocolo de 21 dias</span>
-    </div>
-    <h1 class="an d2" style="text-align:center">Você não desistiu por falta de motivação.</h1>
-    <p class="lead an d3" style="text-align:center;margin-top:22px">
-      Desistiu porque ninguém nunca te deu um plano para o dia seguinte àquele em que você falhou.
+    <h1 style="text-align:center">Você não desistiu por falta de motivação.</h1>
+    <p class="lead" style="text-align:center;margin-top:14px">
+      Desistiu porque ninguém te deu um plano para o dia seguinte àquele em que você falhou. Assista com som (8 min):
     </p>
 
-    <div class="selos an d4">
-      <span class="selo"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Acesso imediato</span>
-      <span class="selo"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Sem mensalidade</span>
-      <span class="selo"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Devolução em 7 dias</span>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     2 · VSL
-     ============================================================ -->
-<section style="padding-top:0">
-  <div class="wrap">
-    <div class="an" style="text-align:center">
-      <span class="rotulo rotulo-n">Assista</span>
-      <h2>Em 8 minutos você entende por que isso sempre acontece de novo.</h2>
-    </div>
-
-    <div class="vsl-caixa an">
+    <div class="vsl-caixa">
       <!-- o vsl.js troca este bloco pelo player do VTurb -->
       <div class="vsl-espaco">Vídeo em breve</div>
     </div>
+    <p style="text-align:center;margin-top:8px;font-size:12px;opacity:.6">O vídeo não carregou? Recarregue a página ou abra no Chrome/Safari.</p>
 
-    <p class="sub2 an" style="text-align:center;margin-top:14px">Assista com som.</p>
-    <p class="an" style="text-align:center;margin-top:6px;font-size:12px;opacity:.6">O vídeo não carregou? Recarregue a página ou abra no Chrome/Safari.</p>
-
-    <div class="an" style="margin-top:30px">
+    <div style="margin-top:22px">
       <a class="cta-vsl" href="https://pay.kirvano.com/0191985a-c6d1-4c8b-835b-23cbb6b87592">QUERO COMEÇAR O DIA 1</a>
       <span class="cta-vsl-sub">R$47 · pagamento único · 7 dias de garantia</span>
+    </div>
+
+    <div class="selos" style="margin-top:18px">
+      <span class="selo"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Acesso imediato</span>
+      <span class="selo"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Sem mensalidade</span>
+      <span class="selo"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Devolução em 7 dias</span>
     </div>
   </div>
 </section>
