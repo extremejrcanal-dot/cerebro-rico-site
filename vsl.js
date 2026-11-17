@@ -98,7 +98,17 @@
     setTimeout(revelar, REVELAR_EM * 1000);
   }
 
-  function iniciar() { porTamanho(); porPlayer(); porCta(); }
+  /* o player entra depois que a pagina ja apareceu na tela:
+     primeiro o texto e o botao, depois o video */
+  function depoisDaPintura(fn) {
+    var feito = false;
+    function vai() { if (!feito) { feito = true; fn(); } }
+    if (document.readyState === "complete") { setTimeout(vai, 0); return; }
+    window.addEventListener("load", function () { setTimeout(vai, 0); });
+    setTimeout(vai, 1500);           // rede de seguranca se o load demorar
+  }
+
+  function iniciar() { porTamanho(); porCta(); depoisDaPintura(porPlayer); }
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", iniciar);
