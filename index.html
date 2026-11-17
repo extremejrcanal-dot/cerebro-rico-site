@@ -260,6 +260,16 @@ details .resp{padding:0 8px 22px 0;color:var(--t2);font-size:15.5px;line-height:
 .tela .pontos{gap:4px;margin:0}
 .tela .pt{width:15px;height:15px;font-size:0;border-radius:4px}
 .tela-titulo{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:6px}
+.tela-real{margin:0;padding:10px 10px 4px}
+@media(max-width:699px){
+  .telas:has(.tela-real){grid-auto-flow:column;grid-auto-columns:74%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;-webkit-overflow-scrolling:touch}
+  .tela-real{scroll-snap-align:center}
+}
+.tela-real img{display:block;width:100%;height:auto;border-radius:14px;border:1px solid var(--line2)}
+.resumo{text-align:center;margin-top:14px}
+.resumo-btn{background:none;border:1px solid var(--line2);color:var(--t2);font:inherit;font-size:13px;padding:9px 16px;border-radius:10px;cursor:pointer}
+.resumo-video{display:none;margin:14px auto 0;max-width:300px}
+.resumo-video video{width:100%;border-radius:14px;border:1px solid var(--line2);background:#000}
 .tela-txt{font-size:13px;color:var(--t2);line-height:1.55}
 
 /* ---------- relatos dos alunos ---------- */
@@ -472,6 +482,14 @@ a{color:inherit}
       <div class="vsl-espaco">Vídeo em breve</div>
     </div>
     <p style="text-align:center;margin-top:8px;font-size:12px;opacity:.6">O vídeo não carregou? Recarregue a página ou abra no Chrome/Safari.</p>
+
+    <!-- resumo de 35 s: o vídeo só é baixado depois do toque, para não pesar o carregamento -->
+    <div class="resumo">
+      <button class="resumo-btn" id="resumo-btn" type="button">Sem tempo agora? Veja o resumo em 35 segundos</button>
+      <div class="resumo-video" id="resumo-video">
+        <video id="resumo-player" controls playsinline preload="none" poster="img/resumo-35s.webp" width="540" height="960"></video>
+      </div>
+    </div>
 
     <div style="margin-top:22px">
       <a class="cta-vsl" href="https://pay.kirvano.com/0191985a-c6d1-4c8b-835b-23cbb6b87592">QUERO COMEÇAR O DIA 1</a>
@@ -721,26 +739,22 @@ a{color:inherit}
     </div>
   </div>
 
-  <!-- telas do app -->
+  <!-- telas reais do app (capturas do próprio aplicativo, com progresso de exemplo) -->
   <div class="wrap wrap-w an" style="margin-top:20px">
+    <p class="sub2" style="text-align:center;margin-bottom:14px">Telas reais do aplicativo, como aparecem no celular:</p>
     <div class="telas">
-      <div class="tela">
-        <div class="tela-topo"><span>Cérebro Rico</span><span>13 / 21</span></div>
-        <div class="pontos" id="tela-a"></div>
-        <div class="tela-legenda">Seu progresso, sempre visível</div>
-      </div>
-      <div class="tela">
-        <div class="tela-topo"><span>Dia 15</span><span>Fase 3</span></div>
-        <div class="tela-titulo">Você vai falhar</div>
-        <div class="tela-txt">E isso já está previsto. Em algum momento você vai perder um dia. A pergunta não é se — é o que você faz no dia seguinte.</div>
-        <div class="tela-legenda">Uma leitura curta por dia</div>
-      </div>
-      <div class="tela">
-        <div class="tela-topo"><span>Registro</span><span>Hoje</span></div>
-        <div class="tela-titulo">Um dia é um dia</div>
-        <div class="tela-txt">Aqui não existe reset. Seu progresso continua exatamente onde estava, e o dia seguinte já tem instrução.</div>
-        <div class="tela-legenda">Sem punição, sem zerar</div>
-      </div>
+      <figure class="tela tela-real">
+        <img src="img/app-progresso.webp" width="450" height="738" loading="lazy" decoding="async" alt="Tela de progresso do app: 6 de 21 dias feitos e a grade dos 21 dias">
+        <figcaption class="tela-legenda">Seu progresso, sempre visível</figcaption>
+      </figure>
+      <figure class="tela tela-real">
+        <img src="img/app-dia.webp" width="450" height="738" loading="lazy" decoding="async" alt="Tela do dia com os botões Fiz e Não fiz hoje">
+        <figcaption class="tela-legenda">Uma ação por dia. Falhou? Você registra.</figcaption>
+      </figure>
+      <figure class="tela tela-real">
+        <img src="img/app-recaida.webp" width="450" height="738" loading="lazy" decoding="async" alt="Tela Um dia é um dia: não recomeça do zero">
+        <figcaption class="tela-legenda">O plano para o dia seguinte, já escrito</figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -1036,7 +1050,16 @@ function pontos(el,cfg){
 }
 
 pontos(document.getElementById("pontos-cena"),{ok:[1,2,3],falhou:[4]});
-pontos(document.getElementById("tela-a"),{ok:[1,2,3,4,5,6,7,8,9,10,11,12],hoje:13});
+(function(){
+  var b=document.getElementById("resumo-btn"),c=document.getElementById("resumo-video"),v=document.getElementById("resumo-player");
+  if(!b||!c||!v) return;
+  b.addEventListener("click",function(){
+    if(!v.getAttribute("src")){ v.setAttribute("src","img/resumo-35s.mp4"); }
+    c.style.display="block"; b.style.display="none";
+    var p=v.play(); if(p&&p.catch){p.catch(function(){});}
+    if(window.fbq){ try{ fbq("trackCustom","ResumoPlay"); }catch(e){} }
+  });
+})();
 
 (function(){
   var alvo=document.getElementById("mortas");
