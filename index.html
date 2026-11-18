@@ -451,6 +451,15 @@ div[style*="text-align:center"] > .rotulo:not(.rotulo-n)::before{display:none}
 }
 .rodape a{color:var(--t2);text-decoration:underline;text-underline-offset:3px}
 a{color:inherit}
+
+/* ---------- Rafael, representante da marca ---------- */
+.resumo-btn{display:inline-flex;align-items:center;gap:10px}
+.resumo-btn img{width:30px;height:30px;border-radius:50%;object-fit:cover;border:1px solid rgba(217,154,43,.5)}
+.rep{display:grid;gap:22px;align-items:center}
+@media(min-width:700px){.rep{grid-template-columns:240px 1fr}}
+.rep-foto{width:100%;height:auto;max-width:240px;aspect-ratio:4/5;object-fit:cover;border-radius:18px;border:1px solid rgba(217,154,43,.35);margin:0 auto;display:block;background:var(--surf2)}
+.rep-nome{font-weight:800;font-size:20px;color:var(--t1);letter-spacing:-.01em}
+.rep-cargo{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-top:4px}
 </style>
 </head>
 <body>
@@ -485,7 +494,7 @@ a{color:inherit}
 
     <!-- resumo de 35 s: o vídeo só é baixado depois do toque, para não pesar o carregamento -->
     <div class="resumo">
-      <button class="resumo-btn" id="resumo-btn" type="button">Sem tempo agora? Veja o resumo em 40 segundos</button>
+      <button class="resumo-btn" id="resumo-btn" type="button"><img src="img/rafael-avatar.webp" alt="" width="30" height="30" loading="lazy">Sem tempo agora? O Rafael resume em 40 segundos</button>
       <div class="resumo-video" id="resumo-video">
         <video id="resumo-player" controls playsinline preload="none" poster="img/rafael-resumo.webp" width="540" height="960"></video>
       </div>
@@ -754,6 +763,26 @@ a{color:inherit}
         <img src="img/app-recaida.webp" width="450" height="738" loading="lazy" decoding="async" alt="Tela Um dia é um dia: não recomeça do zero">
         <figcaption class="tela-legenda">O plano para o dia seguinte, já escrito</figcaption>
       </figure>
+    </div>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- ============================================================
+     9b · QUEM APRESENTA (Rafael, representante da marca)
+     ============================================================ -->
+<section>
+  <div class="wrap">
+    <div class="an"><span class="rotulo">Quem te apresenta o método</span></div>
+    <div class="card an rep" style="margin-top:22px">
+      <img class="rep-foto" src="img/rafael-retrato.webp" alt="Rafael, representante do Cérebro Rico" width="720" height="900" loading="lazy">
+      <div>
+        <div class="rep-nome">Rafael</div>
+        <div class="rep-cargo">Representante do Cérebro Rico</div>
+        <p style="margin-top:14px">O Rafael é o rosto do Ciclo do Comando. É ele quem te mostra, em vídeo, como o protocolo funciona e o que fazer no dia seguinte à falha.</p>
+        <p style="margin-top:10px">Ele fala com quem já recomeçou muitas vezes e cansou de ouvir que o problema é falta de força de vontade.</p>
+      </div>
     </div>
   </div>
 </section>
