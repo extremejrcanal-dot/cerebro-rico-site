@@ -12,7 +12,7 @@
 <link rel="icon" type="image/png" href="/icone.png">
 <link rel="apple-touch-icon" href="/icone-192.png">
 <script>window.V2_PAGINA = "quiz";</script>
-<script src="/pixel.js"></script>
+<script src="/pixel.js" async></script>
 <script src="/utm.js" defer></script>
 <script src="/v2/v2.js" defer></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,6 +37,10 @@
       </div>
       <button class="btn" id="q-ini" type="button">Começar o teste</button>
       <span class="btn-sub">Sem cadastro para ver o resultado</span>
+      <div class="resumo">
+        <button class="resumo-btn" id="resumo-btn" type="button">Por que esse teste? Veja em 40 segundos</button>
+        <div class="player" id="resumo-caixa"><video id="resumo-player" controls playsinline preload="none" poster="/img/rafael-quiz.webp" width="540" height="960"></video></div>
+      </div>
     </section>
     <footer class="rodape">
       <span>Cérebro Rico — O Ciclo do Comando</span>
@@ -46,5 +50,16 @@
   </div>
 </main>
 <script src="/v2/quiz.js" defer></script>
+<script>
+(function(){
+  var b=document.getElementById("resumo-btn"),c=document.getElementById("resumo-caixa"),v=document.getElementById("resumo-player");
+  if(b&&c&&v) b.addEventListener("click",function(){
+    if(!v.getAttribute("src")) v.setAttribute("src","/img/rafael-quiz.mp4");
+    c.style.display="block"; b.style.display="none";
+    var r=v.play(); if(r&&r.catch) r.catch(function(){});
+    if(window.V2_EVENTO) V2_EVENTO("ResumoPlay",{rota:window.V2_ROTA});
+  });
+})();
+</script>
 </body>
 </html>

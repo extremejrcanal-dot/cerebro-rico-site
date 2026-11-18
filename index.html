@@ -7,7 +7,7 @@
 <title>Cérebro Rico — O Ciclo do Comando</title>
 <link rel="icon" type="image/png" href="/icone.png">
 <link rel="apple-touch-icon" href="/icone-192.png">
-<script src="/pixel.js"></script>
+<script src="/pixel.js" async></script>
 <script src="/utm.js" defer></script>
 <meta name="description" content="Protocolo de 21 dias para retomar o comando da sua rotina. Um dia por vez, dentro de um aplicativo. Com um plano escrito para o dia em que você falhar.">
 <meta property="og:title" content="Você não desistiu por falta de motivação.">
@@ -269,7 +269,7 @@ details .resp{padding:0 8px 22px 0;color:var(--t2);font-size:15.5px;line-height:
 .resumo{text-align:center;margin-top:14px}
 .resumo-btn{background:none;border:1px solid var(--line2);color:var(--t2);font:inherit;font-size:13px;padding:9px 16px;border-radius:10px;cursor:pointer}
 .resumo-video{display:none;margin:14px auto 0;max-width:300px}
-.resumo-video video{width:100%;border-radius:14px;border:1px solid var(--line2);background:#000}
+.resumo-video video{width:100%;height:auto;aspect-ratio:9/16;border-radius:14px;border:1px solid var(--line2);background:#000}
 .tela-txt{font-size:13px;color:var(--t2);line-height:1.55}
 
 /* ---------- relatos dos alunos ---------- */
@@ -485,9 +485,9 @@ a{color:inherit}
 
     <!-- resumo de 35 s: o vídeo só é baixado depois do toque, para não pesar o carregamento -->
     <div class="resumo">
-      <button class="resumo-btn" id="resumo-btn" type="button">Sem tempo agora? Veja o resumo em 35 segundos</button>
+      <button class="resumo-btn" id="resumo-btn" type="button">Sem tempo agora? Veja o resumo em 40 segundos</button>
       <div class="resumo-video" id="resumo-video">
-        <video id="resumo-player" controls playsinline preload="none" poster="img/resumo-35s.webp" width="540" height="960"></video>
+        <video id="resumo-player" controls playsinline preload="none" poster="img/rafael-resumo.webp" width="540" height="960"></video>
       </div>
     </div>
 
@@ -638,7 +638,6 @@ a{color:inherit}
          ============================ -->
     <div class="card an" style="margin-top:30px">
       <div class="autor">
-        <img class="autor-foto" src="/autor.jpg" alt="Erick Rangel" onerror="this.style.display='none'">
         <div>
           <div class="autor-nome">Erick Rangel</div>
           <div class="autor-cargo">Criador do Ciclo do Comando</div>
@@ -1054,7 +1053,7 @@ pontos(document.getElementById("pontos-cena"),{ok:[1,2,3],falhou:[4]});
   var b=document.getElementById("resumo-btn"),c=document.getElementById("resumo-video"),v=document.getElementById("resumo-player");
   if(!b||!c||!v) return;
   b.addEventListener("click",function(){
-    if(!v.getAttribute("src")){ v.setAttribute("src","img/resumo-35s.mp4"); }
+    if(!v.getAttribute("src")){ v.setAttribute("src","img/rafael-resumo.mp4"); }
     c.style.display="block"; b.style.display="none";
     var p=v.play(); if(p&&p.catch){p.catch(function(){});}
     if(window.fbq){ try{ fbq("trackCustom","ResumoPlay"); }catch(e){} }

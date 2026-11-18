@@ -5,7 +5,14 @@
    Eventos enviados daqui:
      PageView          — ao abrir a pagina
      ViewContent       — quando a pessoa assiste 30s de VSL
-     InitiateCheckout  — ao clicar em qualquer botao de compra
+     CliqueComprar     — ao clicar em qualquer botao de compra
+                         (evento personalizado)
+
+   InitiateCheckout e AddToCart NAO saem daqui: o proprio
+   checkout da Kirvano dispara os dois, com este mesmo pixel,
+   quando a pagina de pagamento abre de verdade. Antes a pagina
+   tambem mandava InitiateCheckout no clique e o Gerenciador
+   contava em dobro (clique + checkout aberto).
 
    O evento Purchase NAO sai daqui. Ele vem da Kirvano, que
    conhece o valor real da venda (com bump, com upsell). Mandar
@@ -46,10 +53,11 @@
     var b = document.querySelectorAll('a[href*="pay.kirvano.com"]');
     for (var i = 0; i < b.length; i++) {
       b[i].addEventListener("click", function () {
-        fbq('track', 'InitiateCheckout', {
+        fbq('trackCustom', 'CliqueComprar', {
           content_name: 'Cerebro Rico 21 dias',
           value: 47.00,
-          currency: 'BRL'
+          currency: 'BRL',
+          pagina: location.pathname
         });
       });
     }

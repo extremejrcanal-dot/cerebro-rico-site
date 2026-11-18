@@ -12,7 +12,7 @@
 <link rel="icon" type="image/png" href="/icone.png">
 <link rel="apple-touch-icon" href="/icone-192.png">
 <script>window.V2_PAGINA = "vsl";</script>
-<script src="/pixel.js"></script>
+<script src="/pixel.js" async></script>
 <script src="/utm.js" defer></script>
 <script src="/v2/v2.js" defer></script>
 <script src="/v2/vsl.js" defer></script>
@@ -38,8 +38,8 @@
       <div class="vsl"><div class="vsl-espaco" id="vsl-espaco"></div></div>
       <p class="vsl-aviso">O vídeo não carregou? Recarregue a página ou abra no Chrome/Safari.</p>
       <div class="resumo">
-        <button class="resumo-btn" id="resumo-btn" type="button">Sem tempo agora? Veja o resumo em 35 segundos</button>
-        <div class="player" id="resumo-caixa"><video id="resumo-player" controls playsinline preload="none" poster="/img/resumo-35s.webp" width="540" height="960"></video></div>
+        <button class="resumo-btn" id="resumo-btn" type="button">Sem tempo agora? Veja o resumo em 40 segundos</button>
+        <div class="player" id="resumo-caixa"><video id="resumo-player" controls playsinline preload="none" poster="/img/rafael-resumo.webp" width="540" height="960"></video></div>
       </div>
       <a class="btn" href="https://pay.kirvano.com/0191985a-c6d1-4c8b-835b-23cbb6b87592">Começar o Dia 1 agora</a>
       <span class="btn-sub">R$47 · pagamento único · garantia de 7 dias</span>
@@ -186,7 +186,7 @@
   /* resumo de 35 s: só baixa depois do toque */
   var b=document.getElementById("resumo-btn"),c=document.getElementById("resumo-caixa"),v=document.getElementById("resumo-player");
   if(b&&c&&v) b.addEventListener("click",function(){
-    if(!v.getAttribute("src")) v.setAttribute("src","/img/resumo-35s.mp4");
+    if(!v.getAttribute("src")) v.setAttribute("src","/img/rafael-resumo.mp4");
     c.style.display="block"; b.style.display="none";
     var r=v.play(); if(r&&r.catch) r.catch(function(){});
     if(window.V2_EVENTO) V2_EVENTO("ResumoPlay",{rota:window.V2_ROTA});
